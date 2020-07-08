@@ -93,7 +93,7 @@ func GetCmdQueryValidators(storeName string, cdc *codec.Codec) *cobra.Command {
 		Short: "Query for all validators",
 		Args:  cobra.NoArgs,
 		Long: strings.TrimSpace(
-			fmt.Sprintf(`Query details about all validators on a network.
+			fmt.Sprintf(`Query details about all validators in the network.
 
 Example:
 $ %s query staking validators
