@@ -84,9 +84,9 @@ func TestSimulateMsgCreateValidator(t *testing.T) {
 	require.Equal(t, "0.660000000000000000", msg.Commission.MaxRate.String())
 	require.Equal(t, "0.047464127245687382", msg.Commission.Rate.String())
 	require.Equal(t, types.TypeMsgCreateValidator, msg.Type())
-	require.Equal(t, "cosmos1ghekyjucln7y67ntx7cf27m9dpuxxemn4c8g4r", msg.DelegatorAddress.String())
-	require.Equal(t, "cosmosvalconspub1addwnpepqwr8k5g44urevkvz5ys2qjag0nnp6xkd2f8lejn5pw2rehkjt6ftv5d9nrp", msg.Pubkey)
-	require.Equal(t, "cosmosvaloper1ghekyjucln7y67ntx7cf27m9dpuxxemnsvnaes", msg.ValidatorAddress.String())
+	require.Equal(t, "kira1ghekyjucln7y67ntx7cf27m9dpuxxemn9hdx5w", msg.DelegatorAddress.String())
+	require.Equal(t, "kiravalconspub1addwnpepqwr8k5g44urevkvz5ys2qjag0nnp6xkd2f8lejn5pw2rehkjt6ftvkukpm9", msg.Pubkey)
+	require.Equal(t, "kiravaloper1ghekyjucln7y67ntx7cf27m9dpuxxemnk339vz", msg.ValidatorAddress.String())
 	require.Len(t, futureOperations, 0)
 }
 
@@ -123,7 +123,7 @@ func TestSimulateMsgEditValidator(t *testing.T) {
 	require.Equal(t, "BSpYuLyYgg", msg.GetDescription().Website)
 	require.Equal(t, "wNbeHVIkPZ", msg.GetDescription().SecurityContact)
 	require.Equal(t, types.TypeMsgEditValidator, msg.Type())
-	require.Equal(t, "cosmosvaloper1tnh2q55v8wyygtt9srz5safamzdengsn9dsd7z", msg.ValidatorAddress.String())
+	require.Equal(t, "kiravaloper1tnh2q55v8wyygtt9srz5safamzdengsnrsj4ts", msg.ValidatorAddress.String())
 	require.Len(t, futureOperations, 0)
 }
 
@@ -249,12 +249,12 @@ func TestSimulateMsgBeginRedelegate(t *testing.T) {
 	types.ModuleCdc.UnmarshalJSON(operationMsg.Msg, &msg)
 
 	require.True(t, operationMsg.OK)
-	require.Equal(t, "cosmos12gwd9jchc69wck8dhstxgwz3z8qs8yv67ps8mu", msg.DelegatorAddress.String())
+	require.Equal(t, "kira12gwd9jchc69wck8dhstxgwz3z8qs8yv6ww6f63", msg.DelegatorAddress.String())
 	require.Equal(t, "692322", msg.Amount.Amount.String())
 	require.Equal(t, "stake", msg.Amount.Denom)
 	require.Equal(t, types.TypeMsgBeginRedelegate, msg.Type())
-	require.Equal(t, "cosmosvaloper1h6a7shta7jyc72hyznkys683z98z36e0zdk8g9", msg.GetValidatorDstAddress().String())
-	require.Equal(t, "cosmosvaloper17s94pzwhsn4ah25tec27w70n65h5t2scgxzkv2", msg.GetValidatorSrcAddress().String())
+	require.Equal(t, "kiravaloper1h6a7shta7jyc72hyznkys683z98z36e0ys5lah", msg.GetValidatorDstAddress().String())
+	require.Equal(t, "kiravaloper17s94pzwhsn4ah25tec27w70n65h5t2scwmqwec", msg.GetValidatorSrcAddress().String())
 	require.Len(t, futureOperations, 0)
 
 }

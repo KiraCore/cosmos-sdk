@@ -63,7 +63,8 @@ func TestMsgTestSuite(t *testing.T) {
 
 func (suite *MsgTestSuite) TestNewMsgConnectionOpenInit() {
 	prefix := commitmenttypes.NewMerklePrefix([]byte("storePrefixKey"))
-	signer, _ := sdk.AccAddressFromBech32("cosmos1ckgw5d7jfj7wwxjzs9fdrdev9vc8dzcw3n2lht")
+	signer, err := sdk.AccAddressFromBech32("kira1ckgw5d7jfj7wwxjzs9fdrdev9vc8dzcwpuq3kx")
+	suite.Require().NoError(err)
 
 	testMsgs := []*types.MsgConnectionOpenInit{
 		types.NewMsgConnectionOpenInit("test/conn1", "clienttotesta", "connectiontotest", "clienttotest", prefix, signer),
@@ -101,7 +102,8 @@ func (suite *MsgTestSuite) TestNewMsgConnectionOpenInit() {
 
 func (suite *MsgTestSuite) TestNewMsgConnectionOpenTry() {
 	prefix := commitmenttypes.NewMerklePrefix([]byte("storePrefixKey"))
-	signer, _ := sdk.AccAddressFromBech32("cosmos1ckgw5d7jfj7wwxjzs9fdrdev9vc8dzcw3n2lht")
+	signer, err := sdk.AccAddressFromBech32("kira1ckgw5d7jfj7wwxjzs9fdrdev9vc8dzcwpuq3kx")
+	suite.Require().NoError(err)
 
 	testMsgs := []*types.MsgConnectionOpenTry{
 		types.NewMsgConnectionOpenTry("test/conn1", "clienttotesta", "connectiontotest", "clienttotest", prefix, []string{ibctesting.ConnectionVersion}, suite.proof, suite.proof, 10, 10, signer),
@@ -150,7 +152,8 @@ func (suite *MsgTestSuite) TestNewMsgConnectionOpenTry() {
 }
 
 func (suite *MsgTestSuite) TestNewMsgConnectionOpenAck() {
-	signer, _ := sdk.AccAddressFromBech32("cosmos1ckgw5d7jfj7wwxjzs9fdrdev9vc8dzcw3n2lht")
+	signer, err := sdk.AccAddressFromBech32("kira1ckgw5d7jfj7wwxjzs9fdrdev9vc8dzcwpuq3kx")
+	suite.Require().NoError(err)
 
 	testMsgs := []*types.MsgConnectionOpenAck{
 		types.NewMsgConnectionOpenAck("test/conn1", suite.proof, suite.proof, 10, 10, ibctesting.ConnectionVersion, signer),
@@ -188,7 +191,8 @@ func (suite *MsgTestSuite) TestNewMsgConnectionOpenAck() {
 }
 
 func (suite *MsgTestSuite) TestNewMsgConnectionOpenConfirm() {
-	signer, _ := sdk.AccAddressFromBech32("cosmos1ckgw5d7jfj7wwxjzs9fdrdev9vc8dzcw3n2lht")
+	signer, err := sdk.AccAddressFromBech32("kira1ckgw5d7jfj7wwxjzs9fdrdev9vc8dzcwpuq3kx")
+	suite.Require().NoError(err)
 
 	testMsgs := []*types.MsgConnectionOpenConfirm{
 		types.NewMsgConnectionOpenConfirm("test/conn1", suite.proof, 10, signer),

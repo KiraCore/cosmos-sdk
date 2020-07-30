@@ -45,12 +45,12 @@ func TestRandomizedGenState(t *testing.T) {
 	require.Len(t, stakingGenesis.Delegations, 3)
 	require.Len(t, stakingGenesis.Validators, 3)
 	// check Delegations
-	require.Equal(t, "cosmos1tnh2q55v8wyygtt9srz5safamzdengsnqeycj3", stakingGenesis.Delegations[0].DelegatorAddress.String())
-	require.Equal(t, "cosmosvaloper1tnh2q55v8wyygtt9srz5safamzdengsn9dsd7z", stakingGenesis.Delegations[0].ValidatorAddress.String())
+	require.Equal(t, "kira1tnh2q55v8wyygtt9srz5safamzdengsnskwknu", stakingGenesis.Delegations[0].DelegatorAddress.String())
+	require.Equal(t, "kiravaloper1tnh2q55v8wyygtt9srz5safamzdengsnrsj4ts", stakingGenesis.Delegations[0].ValidatorAddress.String())
 	require.Equal(t, "1000.000000000000000000", stakingGenesis.Delegations[0].Shares.String())
 	// check validators
-	require.Equal(t, "cosmosvaloper1ghekyjucln7y67ntx7cf27m9dpuxxemnsvnaes", stakingGenesis.Validators[2].OperatorAddress.String())
-	require.Equal(t, "cosmosvalconspub1addwnpepqwr8k5g44urevkvz5ys2qjag0nnp6xkd2f8lejn5pw2rehkjt6ftv5d9nrp", stakingGenesis.Validators[2].ConsensusPubkey)
+	require.Equal(t, "kiravaloper1ghekyjucln7y67ntx7cf27m9dpuxxemnk339vz", stakingGenesis.Validators[2].OperatorAddress.String())
+	require.Equal(t, "kiravalconspub1addwnpepqwr8k5g44urevkvz5ys2qjag0nnp6xkd2f8lejn5pw2rehkjt6ftvkukpm9", stakingGenesis.Validators[2].ConsensusPubkey)
 	require.Equal(t, false, stakingGenesis.Validators[2].Jailed)
 	require.Equal(t, "Unbonded", stakingGenesis.Validators[2].Status.String())
 	require.Equal(t, "1000", stakingGenesis.Validators[2].Tokens.String())

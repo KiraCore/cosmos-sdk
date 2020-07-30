@@ -96,7 +96,7 @@ func TestMsgTransferGetSignBytes(t *testing.T) {
 	msg := NewMsgTransfer(validPort, validChannel, coins, addr1, addr2, 110, 10)
 	res := msg.GetSignBytes()
 
-	expected := `{"type":"cosmos-sdk/MsgTransfer","value":{"amount":[{"amount":"100","denom":"atom"}],"receiver":"cosmos1w3jhxarpv3j8yvs7f9y7g","sender":"cosmos1w3jhxarpv3j8yvg4ufs4x","source_channel":"testchannel","source_port":"testportid","timeout_height":"110","timeout_timestamp":"10"}}`
+	expected := `{"type":"cosmos-sdk/MsgTransfer","value":{"amount":[{"amount":"100","denom":"atom"}],"receiver":"kira1w3jhxarpv3j8yvssvrnrt","sender":"kira1w3jhxarpv3j8yvgme08g9","source_channel":"testchannel","source_port":"testportid","timeout_height":"110","timeout_timestamp":"10"}}`
 	require.Equal(t, expected, string(res))
 }
 

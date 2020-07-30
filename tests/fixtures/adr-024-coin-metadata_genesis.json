@@ -23,7 +23,7 @@
       "params": {
         "default_send_enabled": true
       },
-      "balances": [	{"address": "cosmos106vrzv5xkheqhjm023pxcxlqmcjvuhtfyachz4",
+      "balances": [	{"address": "kira106vrzv5xkheqhjm023pxcxlqmcjvuhtf5jjerc",
 			    "coins": [
 			      {
 				"denom": "nametoken",
@@ -35,7 +35,7 @@
 			      }
 			    ]
 			},
-			{	"address": "cosmos1xztun2634zplhajda7tmjaxy488qj44n765t58",
+			{	"address": "kira1xztun2634zplhajda7tmjaxy488qj44nw47942",
 			    "coins": [
 			      {
 				"denom": "nametoken",
