@@ -5,7 +5,7 @@ package cosmos.gov;
 import "gogoproto/gogo.proto";
 import "cosmos/gov/gov.proto";
 
-option go_package = "github.com/cosmos/cosmos-sdk/x/gov/types";
+option go_package = "github.com/KiraCore/cosmos-sdk/x/gov/types";
 
 // GenesisState - all staking state that must be provided at genesis
 message GenesisState{
