@@ -155,11 +155,11 @@ func TestSimulateMsgDelegate(t *testing.T) {
 	types.ModuleCdc.UnmarshalJSON(operationMsg.Msg, &msg)
 
 	require.True(t, operationMsg.OK)
-	require.Equal(t, "cosmos1ghekyjucln7y67ntx7cf27m9dpuxxemn4c8g4r", msg.DelegatorAddress.String())
+	require.Equal(t, "kira1ghekyjucln7y67ntx7cf27m9dpuxxemn9hdx5w", msg.DelegatorAddress.String())
 	require.Equal(t, "4896096", msg.Amount.Amount.String())
 	require.Equal(t, "stake", msg.Amount.Denom)
 	require.Equal(t, types.TypeMsgDelegate, msg.Type())
-	require.Equal(t, "cosmosvaloper1tnh2q55v8wyygtt9srz5safamzdengsn9dsd7z", msg.ValidatorAddress.String())
+	require.Equal(t, "kiravaloper1tnh2q55v8wyygtt9srz5safamzdengsnrsj4ts", msg.ValidatorAddress.String())
 	require.Len(t, futureOperations, 0)
 }
 
@@ -200,11 +200,11 @@ func TestSimulateMsgUndelegate(t *testing.T) {
 	types.ModuleCdc.UnmarshalJSON(operationMsg.Msg, &msg)
 
 	require.True(t, operationMsg.OK)
-	require.Equal(t, "cosmos1p8wcgrjr4pjju90xg6u9cgq55dxwq8j7u4x9a0", msg.DelegatorAddress.String())
+	require.Equal(t, "kira1p8wcgrjr4pjju90xg6u9cgq55dxwq8j7v6vtuz", msg.DelegatorAddress.String())
 	require.Equal(t, "560969", msg.Amount.Amount.String())
 	require.Equal(t, "stake", msg.Amount.Denom)
 	require.Equal(t, types.TypeMsgUndelegate, msg.Type())
-	require.Equal(t, "cosmosvaloper1tnh2q55v8wyygtt9srz5safamzdengsn9dsd7z", msg.ValidatorAddress.String())
+	require.Equal(t, "kiravaloper1tnh2q55v8wyygtt9srz5safamzdengsnrsj4ts", msg.ValidatorAddress.String())
 	require.Len(t, futureOperations, 0)
 
 }
