@@ -2,12 +2,13 @@ package baseapp
 
 import (
 	"fmt"
-	"github.com/KiraCore/cosmos-sdk/telemetry"
 	"os"
 	"sort"
 	"strings"
 	"syscall"
 	"time"
+
+	"github.com/KiraCore/cosmos-sdk/telemetry"
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
