@@ -13,6 +13,7 @@ import (
 	"github.com/KiraCore/cosmos-sdk/client"
 	"github.com/KiraCore/cosmos-sdk/client/flags"
 	"github.com/KiraCore/cosmos-sdk/codec"
+	"github.com/KiraCore/cosmos-sdk/server/types"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
 )
 
@@ -23,7 +24,7 @@ const (
 )
 
 // ExportCmd dumps app state to JSON.
-func ExportCmd(appExporter AppExporter, defaultNodeHome string) *cobra.Command {
+func ExportCmd(appExporter types.AppExporter, defaultNodeHome string) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "export",
 		Short: "Export state to JSON",

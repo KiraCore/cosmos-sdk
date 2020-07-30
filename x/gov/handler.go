@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/armon/go-metrics"
+	metrics "github.com/armon/go-metrics"
 
 	"github.com/KiraCore/cosmos-sdk/telemetry"
 	sdk "github.com/KiraCore/cosmos-sdk/types"

@@ -1,7 +1,7 @@
 package types
 
 import (
-	"gopkg.in/yaml.v2"
+	yaml "gopkg.in/yaml.v2"
 
 	sdk "github.com/KiraCore/cosmos-sdk/types"
 )

@@ -13,8 +13,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/KiraCore/cosmos-sdk/client/tx"
-
 	"github.com/stretchr/testify/require"
 	tmcfg "github.com/tendermint/tendermint/config"
 	"github.com/tendermint/tendermint/crypto"
@@ -24,15 +22,18 @@ import (
 	"github.com/tendermint/tendermint/node"
 	tmclient "github.com/tendermint/tendermint/rpc/client"
 	dbm "github.com/tendermint/tm-db"
+	"google.golang.org/grpc"
 
 	"github.com/KiraCore/cosmos-sdk/baseapp"
 	"github.com/KiraCore/cosmos-sdk/client"
 	clientkeys "github.com/KiraCore/cosmos-sdk/client/keys"
+	"github.com/KiraCore/cosmos-sdk/client/tx"
 	"github.com/KiraCore/cosmos-sdk/codec"
 	"github.com/KiraCore/cosmos-sdk/crypto/keyring"
 	"github.com/KiraCore/cosmos-sdk/server"
 	"github.com/KiraCore/cosmos-sdk/server/api"
 	srvconfig "github.com/KiraCore/cosmos-sdk/server/config"
+	servertypes "github.com/KiraCore/cosmos-sdk/server/types"
 	"github.com/KiraCore/cosmos-sdk/simapp"
 	storetypes "github.com/KiraCore/cosmos-sdk/store/types"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
@@ -47,9 +48,9 @@ var lock = new(sync.Mutex)
 
 // AppConstructor defines a function which accepts a network configuration and
 // creates an ABCI Application to provide to Tendermint.
-type AppConstructor = func(val Validator) server.Application
+type AppConstructor = func(val Validator) servertypes.Application
 
-func NewSimApp(val Validator) server.Application {
+func NewSimApp(val Validator) servertypes.Application {
 	return simapp.NewSimApp(
 		val.Ctx.Logger, dbm.NewMemDB(), nil, true, make(map[int64]bool), val.Ctx.Config.RootDir, 0,
 		baseapp.SetPruning(storetypes.NewPruningOptionsFromString(val.AppConfig.Pruning)),
@@ -120,7 +121,7 @@ type (
 		BaseDir    string
 		Validators []*Validator
 
-		config Config
+		Config Config
 	}
 
 	// Validator defines an in-process Tendermint validator node. Through this object,
@@ -143,6 +144,7 @@ type (
 
 		tmNode *node.Node
 		api    *api.Server
+		grpc   *grpc.Server
 	}
 )
 
@@ -159,7 +161,7 @@ func New(t *testing.T, cfg Config) *Network {
 		T:          t,
 		BaseDir:    baseDir,
 		Validators: make([]*Validator, cfg.NumValidators),
-		config:     cfg,
+		Config:     cfg,
 	}
 
 	t.Log("preparing test network...")
@@ -205,6 +207,11 @@ func New(t *testing.T, cfg Config) *Network {
 			rpcAddr, _, err := server.FreeTCPAddr()
 			require.NoError(t, err)
 			tmCfg.RPC.ListenAddress = rpcAddr
+
+			_, grpcPort, err := server.FreeTCPAddr()
+			require.NoError(t, err)
+			appCfg.GRPC.Address = fmt.Sprintf("0.0.0.0:%s", grpcPort)
+			appCfg.GRPC.Enable = true
 		}
 
 		logger := log.NewNopLogger()
@@ -431,7 +438,7 @@ func (n *Network) Cleanup() {
 		}
 	}
 
-	if n.config.CleanupDir {
+	if n.Config.CleanupDir {
 		_ = os.RemoveAll(n.BaseDir)
 	}
 

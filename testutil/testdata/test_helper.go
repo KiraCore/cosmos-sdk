@@ -1,7 +1,7 @@
 package testdata
 
 import (
-	"github.com/tendermint/go-amino"
+	amino "github.com/tendermint/go-amino"
 
 	"github.com/KiraCore/cosmos-sdk/codec/types"
 )

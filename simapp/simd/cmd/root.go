@@ -21,6 +21,7 @@ import (
 	"github.com/KiraCore/cosmos-sdk/client/keys"
 	"github.com/KiraCore/cosmos-sdk/client/rpc"
 	"github.com/KiraCore/cosmos-sdk/server"
+	servertypes "github.com/KiraCore/cosmos-sdk/server/types"
 	"github.com/KiraCore/cosmos-sdk/simapp"
 	"github.com/KiraCore/cosmos-sdk/store"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
@@ -148,7 +149,7 @@ func txCommand() *cobra.Command {
 	return cmd
 }
 
-func newApp(logger log.Logger, db dbm.DB, traceStore io.Writer, appOpts server.AppOptions) server.Application {
+func newApp(logger log.Logger, db dbm.DB, traceStore io.Writer, appOpts servertypes.AppOptions) servertypes.Application {
 	var cache sdk.MultiStorePersistentCache
 
 	if cast.ToBool(appOpts.Get(server.FlagInterBlockCache)) {

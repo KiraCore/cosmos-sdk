@@ -13,11 +13,6 @@ import (
 	stakingtypes "github.com/KiraCore/cosmos-sdk/x/staking/types"
 )
 
-// GenesisState defines the raw genesis transaction in JSON
-type GenesisState struct {
-	GenTxs []json.RawMessage `json:"gentxs" yaml:"gentxs"`
-}
-
 // NewGenesisState creates a new GenesisState object
 func NewGenesisState(genTxs []json.RawMessage) GenesisState {
 	// Ensure genTxs is never nil, https://github.com/KiraCore/cosmos-sdk/issues/5086
@@ -38,10 +33,14 @@ func DefaultGenesisState() GenesisState {
 
 // NewGenesisStateFromTx creates a new GenesisState object
 // from auth transactions
-func NewGenesisStateFromTx(genTxs []sdk.Tx) GenesisState {
+func NewGenesisStateFromTx(txJSONEncoder sdk.TxEncoder, genTxs []sdk.Tx) GenesisState {
 	genTxsBz := make([]json.RawMessage, len(genTxs))
 	for i, genTx := range genTxs {
-		genTxsBz[i] = ModuleCdc.MustMarshalJSON(genTx)
+		var err error
+		genTxsBz[i], err = txJSONEncoder(genTx)
+		if err != nil {
+			panic(err)
+		}
 	}
 	return NewGenesisState(genTxsBz)
 }
