@@ -70,7 +70,7 @@ func TestParseProposal(t *testing.T) {
 {
   "title": "Community Pool Spend",
   "description": "Pay me some Atoms!",
-  "recipient": "cosmos1s5afhd6gxevu37mkqcvvsj8qeylhn0rz46zdlq",
+  "recipient": "kira1s5afhd6gxevu37mkqcvvsj8qeylhn0rz94gr7d",
   "amount": "1000stake",
   "deposit": "1000stake"
 }
@@ -80,7 +80,7 @@ func TestParseProposal(t *testing.T) {
 	proposal, err := ParseCommunityPoolSpendProposalJSON(cdc, okJSON.Name())
 	require.NoError(t, err)
 
-	addr, err := sdk.AccAddressFromBech32("cosmos1s5afhd6gxevu37mkqcvvsj8qeylhn0rz46zdlq")
+	addr, err := sdk.AccAddressFromBech32("kira1s5afhd6gxevu37mkqcvvsj8qeylhn0rz94gr7d")
 	require.NoError(t, err)
 
 	require.Equal(t, "Community Pool Spend", proposal.Title)

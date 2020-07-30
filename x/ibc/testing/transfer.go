@@ -3,7 +3,7 @@ package testing
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/KiraCore/cosmos-sdk/types"
 )
 
 func NewTransferCoins(dst TestChannel, denom string, amount int64) sdk.Coins {

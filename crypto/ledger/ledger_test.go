@@ -112,7 +112,7 @@ func TestPublicKeySafe(t *testing.T) {
 
 	pubKeyAddr, err := sdk.Bech32ifyPubKey(sdk.Bech32PubKeyTypeAccPub, priv.PubKey())
 	require.NoError(t, err)
-	require.Equal(t, "cosmospub1addwnpepqd87l8xhcnrrtzxnkql7k55ph8fr9jarf4hn6udwukfprlalu8lgw0urza0",
+	require.Equal(t, "kirapub1addwnpepqd87l8xhcnrrtzxnkql7k55ph8fr9jarf4hn6udwukfprlalu8lgwlj7566",
 		pubKeyAddr, "Is your device using test mnemonic: %s ?", testutil.TestMnemonic)
 
 	require.Equal(t, "cosmos1w34k53py5v5xyluazqpq65agyajavep2rflq6h",
@@ -124,7 +124,7 @@ func TestPublicKeySafe(t *testing.T) {
 
 func TestPublicKeyHDPath(t *testing.T) {
 	expectedPubKeys := []string{
-		"cosmospub1addwnpepqd87l8xhcnrrtzxnkql7k55ph8fr9jarf4hn6udwukfprlalu8lgw0urza0",
+		"kirapub1addwnpepqd87l8xhcnrrtzxnkql7k55ph8fr9jarf4hn6udwukfprlalu8lgwlj7566",
 		"cosmospub1addwnpepqfsdqjr68h7wjg5wacksmqaypasnra232fkgu5sxdlnlu8j22ztxvlqvd65",
 		"cosmospub1addwnpepqw3xwqun6q43vtgw6p4qspq7srvxhcmvq4jrx5j5ma6xy3r7k6dtxmrkh3d",
 		"cosmospub1addwnpepqvez9lrp09g8w7gkv42y4yr5p6826cu28ydrhrujv862yf4njmqyyjr4pjs",
@@ -137,8 +137,8 @@ func TestPublicKeyHDPath(t *testing.T) {
 	}
 
 	expectedAddrs := []string{
-		"cosmos1w34k53py5v5xyluazqpq65agyajavep2rflq6h",
-		"cosmos19ewxwemt6uahejvwf44u7dh6tq859tkyvarh2q",
+		"kira1w34k53py5v5xyluazqpq65agyajavep2nx4wm6",
+		"kira19ewxwemt6uahejvwf44u7dh6tq859tkyujfetd",
 		"cosmos1a07dzdjgjsntxpp75zg7cgatgq0udh3pcdcxm3",
 		"cosmos1qvw52lmn9gpvem8welghrkc52m3zczyhlqjsl7",
 		"cosmos17m78ka80fqkkw2c4ww0v4xm5nsu2drgrlm8mn2",

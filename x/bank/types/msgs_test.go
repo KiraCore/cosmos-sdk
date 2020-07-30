@@ -52,18 +52,18 @@ func TestMsgSendValidation(t *testing.T) {
 }
 
 func TestMsgSendGetSignBytes(t *testing.T) {
-	addr1 := sdk.AccAddress([]byte("input"))
-	addr2 := sdk.AccAddress([]byte("output"))
+	addr1 := sdk.AccAddress("input")
+	addr2 := sdk.AccAddress("output")
 	coins := sdk.NewCoins(sdk.NewInt64Coin("atom", 10))
 	var msg = NewMsgSend(addr1, addr2, coins)
 	res := msg.GetSignBytes()
 
-	expected := `{"type":"cosmos-sdk/MsgSend","value":{"amount":[{"amount":"10","denom":"atom"}],"from_address":"cosmos1d9h8qat57ljhcm","to_address":"cosmos1da6hgur4wsmpnjyg"}}`
+	expected := `{"type":"cosmos-sdk/MsgSend","value":{"amount":[{"amount":"10","denom":"atom"}],"from_address":"kira1d9h8qat5prnaeq","to_address":"kira1da6hgur4wsl7a7xv"}}`
 	require.Equal(t, expected, string(res))
 }
 
 func TestMsgSendGetSigners(t *testing.T) {
-	var msg = NewMsgSend(sdk.AccAddress([]byte("input1")), sdk.AccAddress{}, sdk.NewCoins())
+	var msg = NewMsgSend(sdk.AccAddress("input1"), sdk.AccAddress{}, sdk.NewCoins())
 	res := msg.GetSigners()
 	// TODO: fix this !
 	require.Equal(t, fmt.Sprintf("%v", res), "[696E70757431]")
@@ -71,8 +71,8 @@ func TestMsgSendGetSigners(t *testing.T) {
 
 func TestMsgMultiSendRoute(t *testing.T) {
 	// Construct a MsgSend
-	addr1 := sdk.AccAddress([]byte("input"))
-	addr2 := sdk.AccAddress([]byte("output"))
+	addr1 := sdk.AccAddress("input")
+	addr2 := sdk.AccAddress("output")
 	coins := sdk.NewCoins(sdk.NewInt64Coin("atom", 10))
 	var msg = MsgMultiSend{
 		Inputs:  []Input{NewInput(addr1, coins)},
@@ -215,8 +215,8 @@ func TestMsgMultiSendValidation(t *testing.T) {
 }
 
 func TestMsgMultiSendGetSignBytes(t *testing.T) {
-	addr1 := sdk.AccAddress([]byte("input"))
-	addr2 := sdk.AccAddress([]byte("output"))
+	addr1 := sdk.AccAddress("input")
+	addr2 := sdk.AccAddress("output")
 	coins := sdk.NewCoins(sdk.NewInt64Coin("atom", 10))
 	var msg = MsgMultiSend{
 		Inputs:  []Input{NewInput(addr1, coins)},
@@ -224,7 +224,7 @@ func TestMsgMultiSendGetSignBytes(t *testing.T) {
 	}
 	res := msg.GetSignBytes()
 
-	expected := `{"type":"cosmos-sdk/MsgMultiSend","value":{"inputs":[{"address":"cosmos1d9h8qat57ljhcm","coins":[{"amount":"10","denom":"atom"}]}],"outputs":[{"address":"cosmos1da6hgur4wsmpnjyg","coins":[{"amount":"10","denom":"atom"}]}]}}`
+	expected := `{"type":"cosmos-sdk/MsgMultiSend","value":{"inputs":[{"address":"kira1d9h8qat5prnaeq","coins":[{"amount":"10","denom":"atom"}]}],"outputs":[{"address":"kira1da6hgur4wsl7a7xv","coins":[{"amount":"10","denom":"atom"}]}]}}`
 	require.Equal(t, expected, string(res))
 }
 

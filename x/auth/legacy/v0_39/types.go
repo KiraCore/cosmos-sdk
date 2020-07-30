@@ -11,11 +11,11 @@ import (
 
 	"github.com/tendermint/tendermint/crypto"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/codec/legacy"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	v034auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v0_34"
-	v038auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v0_38"
+	"github.com/KiraCore/cosmos-sdk/codec"
+	"github.com/KiraCore/cosmos-sdk/codec/legacy"
+	sdk "github.com/KiraCore/cosmos-sdk/types"
+	v034auth "github.com/KiraCore/cosmos-sdk/x/auth/legacy/v0_34"
+	v038auth "github.com/KiraCore/cosmos-sdk/x/auth/legacy/v0_38"
 )
 
 const (

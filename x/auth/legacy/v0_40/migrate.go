@@ -3,8 +3,8 @@ package v040
 import (
 	"fmt"
 
-	v038auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v0_38"
-	v039auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v0_39"
+	v038auth "github.com/KiraCore/cosmos-sdk/x/auth/legacy/v0_38"
+	v039auth "github.com/KiraCore/cosmos-sdk/x/auth/legacy/v0_39"
 )
 
 // Migrate accepts exported x/auth genesis state from v0.38/v0.39 and migrates

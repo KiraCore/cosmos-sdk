@@ -11,11 +11,11 @@ import (
 
 	rpb "google.golang.org/grpc/reflection/grpc_reflection_v1alpha"
 
-	servergrpc "github.com/cosmos/cosmos-sdk/server/grpc"
-	"github.com/cosmos/cosmos-sdk/testutil/network"
-	"github.com/cosmos/cosmos-sdk/testutil/testdata"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
+	servergrpc "github.com/KiraCore/cosmos-sdk/server/grpc"
+	"github.com/KiraCore/cosmos-sdk/testutil/network"
+	"github.com/KiraCore/cosmos-sdk/testutil/testdata"
+	sdk "github.com/KiraCore/cosmos-sdk/types"
+	banktypes "github.com/KiraCore/cosmos-sdk/x/bank/types"
 )
 
 type IntegrationTestSuite struct {

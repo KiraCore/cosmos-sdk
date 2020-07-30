@@ -1,13 +1,13 @@
 package v040
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
-	cryptocodec "github.com/cosmos/cosmos-sdk/crypto/codec"
-	v039auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v0_39"
-	v040auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v0_40"
-	v038bank "github.com/cosmos/cosmos-sdk/x/bank/legacy/v0_38"
-	v040bank "github.com/cosmos/cosmos-sdk/x/bank/legacy/v0_40"
-	"github.com/cosmos/cosmos-sdk/x/genutil/types"
+	"github.com/KiraCore/cosmos-sdk/codec"
+	cryptocodec "github.com/KiraCore/cosmos-sdk/crypto/codec"
+	v039auth "github.com/KiraCore/cosmos-sdk/x/auth/legacy/v0_39"
+	v040auth "github.com/KiraCore/cosmos-sdk/x/auth/legacy/v0_40"
+	v038bank "github.com/KiraCore/cosmos-sdk/x/bank/legacy/v0_38"
+	v040bank "github.com/KiraCore/cosmos-sdk/x/bank/legacy/v0_40"
+	"github.com/KiraCore/cosmos-sdk/x/genutil/types"
 )
 
 // Migrate migrates exported state from v0.39 to a v0.40 genesis state.

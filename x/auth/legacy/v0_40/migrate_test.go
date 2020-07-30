@@ -20,10 +20,12 @@ func TestMigrate(t *testing.T) {
 	v039auth.RegisterCodec(v039Codec)
 
 	coins := sdk.NewCoins(sdk.NewInt64Coin("stake", 50))
-	addr1, _ := sdk.AccAddressFromBech32("cosmos1xxkueklal9vejv9unqu80w9vptyepfa95pd53u")
+	addr1, err := sdk.AccAddressFromBech32("kira1xxkueklal9vejv9unqu80w9vptyepfa9yw86s3")
+	require.NoError(t, err)
 	acc1 := v039auth.NewBaseAccount(addr1, coins, nil, 1, 0)
 
-	addr2, _ := sdk.AccAddressFromBech32("cosmos15v50ymp6n5dn73erkqtmq0u8adpl8d3ujv2e74")
+	addr2, err := sdk.AccAddressFromBech32("kira15v50ymp6n5dn73erkqtmq0u8adpl8d3uzrqhlc")
+	require.NoError(t, err)
 	vaac := v039auth.NewContinuousVestingAccountRaw(
 		v039auth.NewBaseVestingAccount(v039auth.NewBaseAccount(addr2, coins, nil, 1, 0), coins, nil, nil, 3160620846),
 		1580309972,
@@ -53,7 +55,7 @@ func TestMigrate(t *testing.T) {
     {
       "type": "cosmos-sdk/BaseAccount",
       "value": {
-        "address": "cosmos1xxkueklal9vejv9unqu80w9vptyepfa95pd53u",
+        "address": "kira1xxkueklal9vejv9unqu80w9vptyepfa9yw86s3",
         "public_key": null,
         "account_number": "1",
         "sequence": "0"
@@ -62,7 +64,7 @@ func TestMigrate(t *testing.T) {
     {
       "type": "cosmos-sdk/ContinuousVestingAccount",
       "value": {
-        "address": "cosmos15v50ymp6n5dn73erkqtmq0u8adpl8d3ujv2e74",
+        "address": "kira15v50ymp6n5dn73erkqtmq0u8adpl8d3uzrqhlc",
         "public_key": null,
         "account_number": "1",
         "sequence": "0",

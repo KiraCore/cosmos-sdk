@@ -5,7 +5,7 @@ package tx
 
 import (
 	fmt "fmt"
-	_ "github.com/cosmos/cosmos-sdk/types/tx/signing"
+	_ "github.com/KiraCore/cosmos-sdk/types/tx/signing"
 	proto "github.com/gogo/protobuf/proto"
 	math "math"
 )
