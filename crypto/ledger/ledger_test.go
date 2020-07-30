@@ -34,26 +34,26 @@ func TestPublicKeyUnsafe(t *testing.T) {
 
 	pubKeyAddr, err := sdk.Bech32ifyPubKey(sdk.Bech32PubKeyTypeAccPub, priv.PubKey())
 	require.NoError(t, err)
-	require.Equal(t, "cosmospub1addwnpepqd87l8xhcnrrtzxnkql7k55ph8fr9jarf4hn6udwukfprlalu8lgw0urza0",
+	require.Equal(t, "kirapub1addwnpepqd87l8xhcnrrtzxnkql7k55ph8fr9jarf4hn6udwukfprlalu8lgwlj7566",
 		pubKeyAddr, "Is your device using test mnemonic: %s ?", testutil.TestMnemonic)
 
 	addr := sdk.AccAddress(priv.PubKey().Address()).String()
-	require.Equal(t, "cosmos1w34k53py5v5xyluazqpq65agyajavep2rflq6h",
+	require.Equal(t, "kira1w34k53py5v5xyluazqpq65agyajavep2nx4wm6",
 		addr, "Is your device using test mnemonic: %s ?", testutil.TestMnemonic)
 }
 
 func TestPublicKeyUnsafeHDPath(t *testing.T) {
 	expectedAnswers := []string{
-		"cosmospub1addwnpepqd87l8xhcnrrtzxnkql7k55ph8fr9jarf4hn6udwukfprlalu8lgw0urza0",
-		"cosmospub1addwnpepqfsdqjr68h7wjg5wacksmqaypasnra232fkgu5sxdlnlu8j22ztxvlqvd65",
-		"cosmospub1addwnpepqw3xwqun6q43vtgw6p4qspq7srvxhcmvq4jrx5j5ma6xy3r7k6dtxmrkh3d",
-		"cosmospub1addwnpepqvez9lrp09g8w7gkv42y4yr5p6826cu28ydrhrujv862yf4njmqyyjr4pjs",
-		"cosmospub1addwnpepq06hw3enfrtmq8n67teytcmtnrgcr0yntmyt25kdukfjkerdc7lqg32rcz7",
-		"cosmospub1addwnpepqg3trf2gd0s2940nckrxherwqhgmm6xd5h4pcnrh4x7y35h6yafmcpk5qns",
-		"cosmospub1addwnpepqdm6rjpx6wsref8wjn7ym6ntejet430j4szpngfgc20caz83lu545vuv8hp",
-		"cosmospub1addwnpepqvdhtjzy2wf44dm03jxsketxc07vzqwvt3vawqqtljgsr9s7jvydjmt66ew",
-		"cosmospub1addwnpepqwystfpyxwcava7v3t7ndps5xzu6s553wxcxzmmnxevlzvwrlqpzz695nw9",
-		"cosmospub1addwnpepqw970u6gjqkccg9u3rfj99857wupj2z9fqfzy2w7e5dd7xn7kzzgkgqch0r",
+		"kirapub1addwnpepqd87l8xhcnrrtzxnkql7k55ph8fr9jarf4hn6udwukfprlalu8lgwlj7566",
+		"kirapub1addwnpepqfsdqjr68h7wjg5wacksmqaypasnra232fkgu5sxdlnlu8j22ztxv0w3map",
+		"kirapub1addwnpepqw3xwqun6q43vtgw6p4qspq7srvxhcmvq4jrx5j5ma6xy3r7k6dtxtdtpkc",
+		"kirapub1addwnpepqvez9lrp09g8w7gkv42y4yr5p6826cu28ydrhrujv862yf4njmqyyzdgh49",
+		"kirapub1addwnpepq06hw3enfrtmq8n67teytcmtnrgcr0yntmyt25kdukfjkerdc7lqgpy7w9t",
+		"kirapub1addwnpepqg3trf2gd0s2940nckrxherwqhgmm6xd5h4pcnrh4x7y35h6yafmc3cfk59",
+		"kirapub1addwnpepqdm6rjpx6wsref8wjn7ym6ntejet430j4szpngfgc20caz83lu545uj33s5",
+		"kirapub1addwnpepqvdhtjzy2wf44dm03jxsketxc07vzqwvt3vawqqtljgsr9s7jvydjt98v7m",
+		"kirapub1addwnpepqwystfpyxwcava7v3t7ndps5xzu6s553wxcxzmmnxevlzvwrlqpzz2tf9fs",
+		"kirapub1addwnpepqw970u6gjqkccg9u3rfj99857wupj2z9fqfzy2w7e5dd7xn7kzzgkcw9pgk",
 	}
 
 	const numIters = 10
@@ -115,7 +115,7 @@ func TestPublicKeySafe(t *testing.T) {
 	require.Equal(t, "kirapub1addwnpepqd87l8xhcnrrtzxnkql7k55ph8fr9jarf4hn6udwukfprlalu8lgwlj7566",
 		pubKeyAddr, "Is your device using test mnemonic: %s ?", testutil.TestMnemonic)
 
-	require.Equal(t, "cosmos1w34k53py5v5xyluazqpq65agyajavep2rflq6h",
+	require.Equal(t, "kira1w34k53py5v5xyluazqpq65agyajavep2nx4wm6",
 		addr, "Is your device using test mnemonic: %s ?", testutil.TestMnemonic)
 
 	addr2 := sdk.AccAddress(priv.PubKey().Address()).String()
@@ -125,28 +125,28 @@ func TestPublicKeySafe(t *testing.T) {
 func TestPublicKeyHDPath(t *testing.T) {
 	expectedPubKeys := []string{
 		"kirapub1addwnpepqd87l8xhcnrrtzxnkql7k55ph8fr9jarf4hn6udwukfprlalu8lgwlj7566",
-		"cosmospub1addwnpepqfsdqjr68h7wjg5wacksmqaypasnra232fkgu5sxdlnlu8j22ztxvlqvd65",
-		"cosmospub1addwnpepqw3xwqun6q43vtgw6p4qspq7srvxhcmvq4jrx5j5ma6xy3r7k6dtxmrkh3d",
-		"cosmospub1addwnpepqvez9lrp09g8w7gkv42y4yr5p6826cu28ydrhrujv862yf4njmqyyjr4pjs",
-		"cosmospub1addwnpepq06hw3enfrtmq8n67teytcmtnrgcr0yntmyt25kdukfjkerdc7lqg32rcz7",
-		"cosmospub1addwnpepqg3trf2gd0s2940nckrxherwqhgmm6xd5h4pcnrh4x7y35h6yafmcpk5qns",
-		"cosmospub1addwnpepqdm6rjpx6wsref8wjn7ym6ntejet430j4szpngfgc20caz83lu545vuv8hp",
-		"cosmospub1addwnpepqvdhtjzy2wf44dm03jxsketxc07vzqwvt3vawqqtljgsr9s7jvydjmt66ew",
-		"cosmospub1addwnpepqwystfpyxwcava7v3t7ndps5xzu6s553wxcxzmmnxevlzvwrlqpzz695nw9",
-		"cosmospub1addwnpepqw970u6gjqkccg9u3rfj99857wupj2z9fqfzy2w7e5dd7xn7kzzgkgqch0r",
+		"kirapub1addwnpepqfsdqjr68h7wjg5wacksmqaypasnra232fkgu5sxdlnlu8j22ztxv0w3map",
+		"kirapub1addwnpepqw3xwqun6q43vtgw6p4qspq7srvxhcmvq4jrx5j5ma6xy3r7k6dtxtdtpkc",
+		"kirapub1addwnpepqvez9lrp09g8w7gkv42y4yr5p6826cu28ydrhrujv862yf4njmqyyzdgh49",
+		"kirapub1addwnpepq06hw3enfrtmq8n67teytcmtnrgcr0yntmyt25kdukfjkerdc7lqgpy7w9t",
+		"kirapub1addwnpepqg3trf2gd0s2940nckrxherwqhgmm6xd5h4pcnrh4x7y35h6yafmc3cfk59",
+		"kirapub1addwnpepqdm6rjpx6wsref8wjn7ym6ntejet430j4szpngfgc20caz83lu545uj33s5",
+		"kirapub1addwnpepqvdhtjzy2wf44dm03jxsketxc07vzqwvt3vawqqtljgsr9s7jvydjt98v7m",
+		"kirapub1addwnpepqwystfpyxwcava7v3t7ndps5xzu6s553wxcxzmmnxevlzvwrlqpzz2tf9fs",
+		"kirapub1addwnpepqw970u6gjqkccg9u3rfj99857wupj2z9fqfzy2w7e5dd7xn7kzzgkcw9pgk",
 	}
 
 	expectedAddrs := []string{
 		"kira1w34k53py5v5xyluazqpq65agyajavep2nx4wm6",
 		"kira19ewxwemt6uahejvwf44u7dh6tq859tkyujfetd",
-		"cosmos1a07dzdjgjsntxpp75zg7cgatgq0udh3pcdcxm3",
-		"cosmos1qvw52lmn9gpvem8welghrkc52m3zczyhlqjsl7",
-		"cosmos17m78ka80fqkkw2c4ww0v4xm5nsu2drgrlm8mn2",
-		"cosmos1ferh9ll9c452d2p8k2v7heq084guygkn43up9e",
-		"cosmos10vf3sxmjg96rqq36axcphzfsl74dsntuehjlw5",
-		"cosmos1cq83av8cmnar79h0rg7duh9gnr7wkh228a7fxg",
-		"cosmos1dszhfrt226jy5rsre7e48vw9tgwe90uerfyefa",
-		"cosmos1734d7qsylzrdt05muhqqtpd90j8mp4y6rzch8l",
+		"kira1a07dzdjgjsntxpp75zg7cgatgq0udh3pgzjg6u",
+		"kira1qvw52lmn9gpvem8welghrkc52m3zczyh00c77n",
+		"kira17m78ka80fqkkw2c4ww0v4xm5nsu2drgr05d4j8",
+		"kira1ferh9ll9c452d2p8k2v7heq084guygkn97k0y5",
+		"kira10vf3sxmjg96rqq36axcphzfsl74dsntufcc30e",
+		"kira1cq83av8cmnar79h0rg7duh9gnr7wkh22hj5889",
+		"kira1dszhfrt226jy5rsre7e48vw9tgwe90uenxwhgs",
+		"kira1734d7qsylzrdt05muhqqtpd90j8mp4y6ndjexj",
 	}
 
 	const numIters = 10
