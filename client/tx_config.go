@@ -1,10 +1,7 @@
 package client
 
 import (
-	"github.com/tendermint/tendermint/crypto"
-
 	sdk "github.com/KiraCore/cosmos-sdk/types"
-	txtypes "github.com/KiraCore/cosmos-sdk/types/tx"
 	signingtypes "github.com/KiraCore/cosmos-sdk/types/tx/signing"
 	"github.com/KiraCore/cosmos-sdk/x/auth/signing"
 )
@@ -40,7 +37,6 @@ type (
 		GetTx() signing.SigFeeMemoTx
 
 		SetMsgs(msgs ...sdk.Msg) error
-		SetSignerInfo(pubKey crypto.PubKey, modeInfo *txtypes.ModeInfo) error
 		SetSignatures(signatures ...signingtypes.SignatureV2) error
 		SetMemo(memo string)
 		SetFeeAmount(amount sdk.Coins)

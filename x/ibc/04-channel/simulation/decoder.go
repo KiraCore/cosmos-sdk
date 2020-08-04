@@ -4,17 +4,16 @@ import (
 	"bytes"
 	"fmt"
 
-	tmkv "github.com/tendermint/tendermint/libs/kv"
-
 	"github.com/KiraCore/cosmos-sdk/codec"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
+	"github.com/KiraCore/cosmos-sdk/types/kv"
 	"github.com/KiraCore/cosmos-sdk/x/ibc/04-channel/types"
 	host "github.com/KiraCore/cosmos-sdk/x/ibc/24-host"
 )
 
 // NewDecodeStore returns a decoder function closure that unmarshals the KVPair's
 // Value to the corresponding channel type.
-func NewDecodeStore(cdc codec.BinaryMarshaler, kvA, kvB tmkv.Pair) (string, bool) {
+func NewDecodeStore(cdc codec.BinaryMarshaler, kvA, kvB kv.Pair) (string, bool) {
 	switch {
 	case bytes.HasPrefix(kvA.Key, []byte(host.KeyChannelPrefix)):
 		var channelA, channelB types.Channel

@@ -4,12 +4,11 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/KiraCore/cosmos-sdk/std"
-
 	"github.com/stretchr/testify/require"
-	tmkv "github.com/tendermint/tendermint/libs/kv"
 
+	"github.com/KiraCore/cosmos-sdk/std"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
+	"github.com/KiraCore/cosmos-sdk/types/kv"
 	authtypes "github.com/KiraCore/cosmos-sdk/x/auth/types"
 )
 
@@ -17,26 +16,26 @@ func TestGetSimulationLog(t *testing.T) {
 	cdc := std.MakeCodec(ModuleBasics)
 
 	decoders := make(sdk.StoreDecoderRegistry)
-	decoders[authtypes.StoreKey] = func(kvAs, kvBs tmkv.Pair) string { return "10" }
+	decoders[authtypes.StoreKey] = func(kvAs, kvBs kv.Pair) string { return "10" }
 
 	tests := []struct {
 		store       string
-		kvPairs     []tmkv.Pair
+		kvPairs     []kv.Pair
 		expectedLog string
 	}{
 		{
 			"Empty",
-			[]tmkv.Pair{{}},
+			[]kv.Pair{{}},
 			"",
 		},
 		{
 			authtypes.StoreKey,
-			[]tmkv.Pair{{Key: authtypes.GlobalAccountNumberKey, Value: cdc.MustMarshalBinaryBare(uint64(10))}},
+			[]kv.Pair{{Key: authtypes.GlobalAccountNumberKey, Value: cdc.MustMarshalBinaryBare(uint64(10))}},
 			"10",
 		},
 		{
 			"OtherStore",
-			[]tmkv.Pair{{Key: []byte("key"), Value: []byte("value")}},
+			[]kv.Pair{{Key: []byte("key"), Value: []byte("value")}},
 			fmt.Sprintf("store A %X => %X\nstore B %X => %X\n", []byte("key"), []byte("value"), []byte("key"), []byte("value")),
 		},
 	}
