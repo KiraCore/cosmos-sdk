@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"testing"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	rest2 "github.com/cosmos/cosmos-sdk/x/auth/client/rest"
-	"github.com/cosmos/cosmos-sdk/x/bank/types"
+	sdk "github.com/KiraCore/cosmos-sdk/types"
+	rest2 "github.com/KiraCore/cosmos-sdk/x/auth/client/rest"
+	"github.com/KiraCore/cosmos-sdk/x/bank/types"
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/cosmos/cosmos-sdk/types/rest"
-	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
+	"github.com/KiraCore/cosmos-sdk/types/rest"
+	authtypes "github.com/KiraCore/cosmos-sdk/x/auth/types"
 
-	"github.com/cosmos/cosmos-sdk/testutil/network"
+	"github.com/KiraCore/cosmos-sdk/testutil/network"
 )
 
 type IntegrationTestSuite struct {

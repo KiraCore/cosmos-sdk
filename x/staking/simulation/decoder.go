@@ -2,6 +2,7 @@ package simulation
 
 import (
 	"bytes"
+	"fmt"
 
 	"github.com/KiraCore/cosmos-sdk/codec"
 	sdk "github.com/KiraCore/cosmos-sdk/types"

@@ -7,7 +7,7 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 	dbm "github.com/tendermint/tm-db"
 
-	"github.com/cosmos/cosmos-sdk/types/kv"
+	"github.com/KiraCore/cosmos-sdk/types/kv"
 )
 
 type Store interface {

@@ -5,25 +5,25 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/cosmos/cosmos-sdk/simapp/params"
+	"github.com/KiraCore/cosmos-sdk/simapp/params"
 
-	"github.com/cosmos/cosmos-sdk/x/auth/signing"
+	"github.com/KiraCore/cosmos-sdk/x/auth/signing"
 
 	"github.com/stretchr/testify/require"
 
-	tx2 "github.com/cosmos/cosmos-sdk/client/tx"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/simapp"
-	"github.com/cosmos/cosmos-sdk/std"
-	"github.com/cosmos/cosmos-sdk/x/auth/tx"
-	types3 "github.com/cosmos/cosmos-sdk/x/auth/types"
+	tx2 "github.com/KiraCore/cosmos-sdk/client/tx"
+	"github.com/KiraCore/cosmos-sdk/codec"
+	"github.com/KiraCore/cosmos-sdk/simapp"
+	"github.com/KiraCore/cosmos-sdk/std"
+	"github.com/KiraCore/cosmos-sdk/x/auth/tx"
+	types3 "github.com/KiraCore/cosmos-sdk/x/auth/types"
 
-	signing2 "github.com/cosmos/cosmos-sdk/types/tx/signing"
+	signing2 "github.com/KiraCore/cosmos-sdk/types/tx/signing"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/testutil/testdata"
-	"github.com/cosmos/cosmos-sdk/types"
-	types2 "github.com/cosmos/cosmos-sdk/x/bank/types"
+	"github.com/KiraCore/cosmos-sdk/client"
+	"github.com/KiraCore/cosmos-sdk/testutil/testdata"
+	"github.com/KiraCore/cosmos-sdk/types"
+	types2 "github.com/KiraCore/cosmos-sdk/x/bank/types"
 )
 
 const (
