@@ -5,8 +5,9 @@ import (
 	"io"
 
 	abci "github.com/tendermint/tendermint/abci/types"
-	tmkv "github.com/tendermint/tendermint/libs/kv"
 	dbm "github.com/tendermint/tm-db"
+
+	"github.com/KiraCore/cosmos-sdk/types/kv"
 )
 
 type Store interface {
@@ -18,6 +19,8 @@ type Store interface {
 type Committer interface {
 	Commit() CommitID
 	LastCommitID() CommitID
+
+	// TODO: Deprecate after 0.38.5
 	SetPruning(PruningOptions)
 }
 
@@ -318,6 +321,9 @@ type KVStoreKey struct {
 // NewKVStoreKey returns a new pointer to a KVStoreKey.
 // Use a pointer so keys don't collide.
 func NewKVStoreKey(name string) *KVStoreKey {
+	if name == "" {
+		panic("empty key name not allowed")
+	}
 	return &KVStoreKey{
 		name: name,
 	}
@@ -376,7 +382,7 @@ func (key *MemoryStoreKey) String() string {
 //----------------------------------------
 
 // key-value result for iterator queries
-type KVPair tmkv.Pair
+type KVPair kv.Pair
 
 //----------------------------------------
 

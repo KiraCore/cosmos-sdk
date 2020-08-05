@@ -3,9 +3,9 @@ package types
 import (
 	"bytes"
 	"encoding/binary"
-	"errors"
-	"fmt"
 	"strings"
+
+	ics23 "github.com/confio/ics23/go"
 
 	"github.com/KiraCore/cosmos-sdk/codec"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
@@ -21,27 +21,14 @@ import (
 	host "github.com/KiraCore/cosmos-sdk/x/ibc/24-host"
 )
 
-var _ clientexported.ClientState = ClientState{}
-
-// ClientState requires (read-only) access to keys outside the client prefix.
-type ClientState struct {
-	ID      string `json:"id" yaml:"id"`
-	ChainID string `json:"chain_id" yaml:"chain_id"`
-	Height  int64  `json:"height" yaml:"height"`
-}
+var _ clientexported.ClientState = (*ClientState)(nil)
 
 // NewClientState creates a new ClientState instance
 func NewClientState(chainID string, height int64) ClientState {
 	return ClientState{
-		ID:      clientexported.Localhost.String(),
 		ChainID: chainID,
-		Height:  height,
+		Height:  uint64(height),
 	}
-}
-
-// GetID returns the loop-back client state identifier.
-func (cs ClientState) GetID() string {
-	return cs.ID
 }
 
 // GetChainID returns an empty string
@@ -56,7 +43,7 @@ func (cs ClientState) ClientType() clientexported.ClientType {
 
 // GetLatestHeight returns the latest height stored.
 func (cs ClientState) GetLatestHeight() uint64 {
-	return uint64(cs.Height)
+	return cs.Height
 }
 
 // IsFrozen returns false.
@@ -67,62 +54,36 @@ func (cs ClientState) IsFrozen() bool {
 // Validate performs a basic validation of the client state fields.
 func (cs ClientState) Validate() error {
 	if strings.TrimSpace(cs.ChainID) == "" {
-		return errors.New("chain id cannot be blank")
+		return sdkerrors.Wrap(sdkerrors.ErrInvalidChainID, "chain id cannot be blank")
 	}
 	if cs.Height <= 0 {
-		return fmt.Errorf("height must be positive: %d", cs.Height)
+		return sdkerrors.Wrapf(sdkerrors.ErrInvalidHeight, "height must be positive: %d", cs.Height)
 	}
-	return host.DefaultClientIdentifierValidator(cs.ID)
+	return nil
 }
 
-// VerifyClientConsensusState verifies a proof of the consensus
-// state of the loop-back client.
-// VerifyClientConsensusState verifies a proof of the consensus state of the
-// Tendermint client stored on the target machine.
-func (cs ClientState) VerifyClientConsensusState(
-	store sdk.KVStore,
-	cdc *codec.Codec,
-	_ commitmentexported.Root,
-	height uint64,
-	_ string,
-	consensusHeight uint64,
-	prefix commitmentexported.Prefix,
-	_ commitmentexported.Proof,
-	consensusState clientexported.ConsensusState,
-) error {
-	path, err := commitmenttypes.ApplyPrefix(prefix, consensusStatePath(cs.GetID()))
-	if err != nil {
-		return err
-	}
-
-	data := store.Get([]byte(path.String()))
-	if len(data) == 0 {
-		return sdkerrors.Wrapf(clienttypes.ErrFailedClientConsensusStateVerification, "not found for path %s", path)
-	}
-
-	var prevConsensusState clientexported.ConsensusState
-	if err := cdc.UnmarshalBinaryBare(data, &prevConsensusState); err != nil {
-		return err
-	}
-
-	if consensusState != prevConsensusState {
-		return sdkerrors.Wrapf(
-			clienttypes.ErrFailedClientConsensusStateVerification,
-			"consensus state ≠ previous stored consensus state: \n%v\n≠\n%v", consensusState, prevConsensusState,
-		)
-	}
-
+// GetProofSpecs returns nil since localhost does not have to verify proofs
+func (cs ClientState) GetProofSpecs() []*ics23.ProofSpec {
 	return nil
+}
+
+// VerifyClientConsensusState returns an error since a local host client does not store consensus
+// states.
+func (cs ClientState) VerifyClientConsensusState(
+	sdk.KVStore, codec.BinaryMarshaler, *codec.Codec, commitmentexported.Root,
+	uint64, string, uint64, commitmentexported.Prefix, []byte, clientexported.ConsensusState,
+) error {
+	return ErrConsensusStatesNotStored
 }
 
 // VerifyConnectionState verifies a proof of the connection state of the
 // specified connection end stored locally.
 func (cs ClientState) VerifyConnectionState(
 	store sdk.KVStore,
-	cdc codec.Marshaler,
+	cdc codec.BinaryMarshaler,
 	_ uint64,
 	prefix commitmentexported.Prefix,
-	_ commitmentexported.Proof,
+	_ []byte,
 	connectionID string,
 	connectionEnd connectionexported.ConnectionI,
 	_ clientexported.ConsensusState,
@@ -157,10 +118,10 @@ func (cs ClientState) VerifyConnectionState(
 // channel end, under the specified port, stored on the local machine.
 func (cs ClientState) VerifyChannelState(
 	store sdk.KVStore,
-	cdc codec.Marshaler,
+	cdc codec.BinaryMarshaler,
 	_ uint64,
 	prefix commitmentexported.Prefix,
-	_ commitmentexported.Proof,
+	_ []byte,
 	portID,
 	channelID string,
 	channel channelexported.ChannelI,
@@ -196,9 +157,10 @@ func (cs ClientState) VerifyChannelState(
 // the specified port, specified channel, and specified sequence.
 func (cs ClientState) VerifyPacketCommitment(
 	store sdk.KVStore,
+	_ codec.BinaryMarshaler,
 	_ uint64,
 	prefix commitmentexported.Prefix,
-	_ commitmentexported.Proof,
+	_ []byte,
 	portID,
 	channelID string,
 	sequence uint64,
@@ -229,9 +191,10 @@ func (cs ClientState) VerifyPacketCommitment(
 // acknowledgement at the specified port, specified channel, and specified sequence.
 func (cs ClientState) VerifyPacketAcknowledgement(
 	store sdk.KVStore,
+	_ codec.BinaryMarshaler,
 	_ uint64,
 	prefix commitmentexported.Prefix,
-	_ commitmentexported.Proof,
+	_ []byte,
 	portID,
 	channelID string,
 	sequence uint64,
@@ -263,9 +226,10 @@ func (cs ClientState) VerifyPacketAcknowledgement(
 // specified sequence.
 func (cs ClientState) VerifyPacketAcknowledgementAbsence(
 	store sdk.KVStore,
+	_ codec.BinaryMarshaler,
 	_ uint64,
 	prefix commitmentexported.Prefix,
-	_ commitmentexported.Proof,
+	_ []byte,
 	portID,
 	channelID string,
 	sequence uint64,
@@ -288,9 +252,10 @@ func (cs ClientState) VerifyPacketAcknowledgementAbsence(
 // received of the specified channel at the specified port.
 func (cs ClientState) VerifyNextSequenceRecv(
 	store sdk.KVStore,
+	_ codec.BinaryMarshaler,
 	_ uint64,
 	prefix commitmentexported.Prefix,
-	_ commitmentexported.Proof,
+	_ []byte,
 	portID,
 	channelID string,
 	nextSequenceRecv uint64,
@@ -315,10 +280,4 @@ func (cs ClientState) VerifyNextSequenceRecv(
 	}
 
 	return nil
-}
-
-// consensusStatePath takes an Identifier and returns a Path under which to
-// store the consensus state of a client.
-func consensusStatePath(clientID string) string {
-	return fmt.Sprintf("consensusState/%s", clientID)
 }

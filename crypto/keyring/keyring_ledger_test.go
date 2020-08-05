@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/KiraCore/cosmos-sdk/crypto/hd"
-	"github.com/KiraCore/cosmos-sdk/tests"
+	"github.com/KiraCore/cosmos-sdk/testutil"
 	"github.com/KiraCore/cosmos-sdk/types"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
 )
@@ -31,7 +31,7 @@ func TestInMemoryCreateLedger(t *testing.T) {
 	pubKey := ledger.GetPubKey()
 	pk, err := sdk.Bech32ifyPubKey(sdk.Bech32PubKeyTypeAccPub, pubKey)
 	require.NoError(t, err)
-	require.Equal(t, "cosmospub1addwnpepqdszcr95mrqqs8lw099aa9h8h906zmet22pmwe9vquzcgvnm93eqygufdlv", pk)
+	require.Equal(t, "kirapub1addwnpepqdszcr95mrqqs8lw099aa9h8h906zmet22pmwe9vquzcgvnm93eqycj5mce", pk)
 
 	// Check that restoring the key gets the same results
 	restoredKey, err := kb.Key("some_account")
@@ -42,7 +42,7 @@ func TestInMemoryCreateLedger(t *testing.T) {
 	pubKey = restoredKey.GetPubKey()
 	pk, err = sdk.Bech32ifyPubKey(sdk.Bech32PubKeyTypeAccPub, pubKey)
 	require.NoError(t, err)
-	require.Equal(t, "cosmospub1addwnpepqdszcr95mrqqs8lw099aa9h8h906zmet22pmwe9vquzcgvnm93eqygufdlv", pk)
+	require.Equal(t, "kirapub1addwnpepqdszcr95mrqqs8lw099aa9h8h906zmet22pmwe9vquzcgvnm93eqycj5mce", pk)
 
 	path, err := restoredKey.GetPath()
 	require.NoError(t, err)
@@ -52,7 +52,7 @@ func TestInMemoryCreateLedger(t *testing.T) {
 // TestSignVerify does some detailed checks on how we sign and validate
 // signatures
 func TestSignVerifyKeyRingWithLedger(t *testing.T) {
-	dir, cleanup := tests.NewTestCaseDir(t)
+	dir, cleanup := testutil.NewTestCaseDir(t)
 	t.Cleanup(cleanup)
 	kb, err := New("keybasename", "test", dir, nil)
 	require.NoError(t, err)
@@ -89,7 +89,7 @@ func TestSignVerifyKeyRingWithLedger(t *testing.T) {
 }
 
 func TestAltKeyring_SaveLedgerKey(t *testing.T) {
-	dir, clean := tests.NewTestCaseDir(t)
+	dir, clean := testutil.NewTestCaseDir(t)
 	t.Cleanup(clean)
 
 	keyring, err := New(t.Name(), BackendTest, dir, nil)
@@ -110,7 +110,7 @@ func TestAltKeyring_SaveLedgerKey(t *testing.T) {
 	pubKey := ledger.GetPubKey()
 	pk, err := sdk.Bech32ifyPubKey(sdk.Bech32PubKeyTypeAccPub, pubKey)
 	require.NoError(t, err)
-	require.Equal(t, "cosmospub1addwnpepqdszcr95mrqqs8lw099aa9h8h906zmet22pmwe9vquzcgvnm93eqygufdlv", pk)
+	require.Equal(t, "kirapub1addwnpepqdszcr95mrqqs8lw099aa9h8h906zmet22pmwe9vquzcgvnm93eqycj5mce", pk)
 
 	// Check that restoring the key gets the same results
 	restoredKey, err := keyring.Key("some_account")
@@ -121,7 +121,7 @@ func TestAltKeyring_SaveLedgerKey(t *testing.T) {
 	pubKey = restoredKey.GetPubKey()
 	pk, err = sdk.Bech32ifyPubKey(sdk.Bech32PubKeyTypeAccPub, pubKey)
 	require.NoError(t, err)
-	require.Equal(t, "cosmospub1addwnpepqdszcr95mrqqs8lw099aa9h8h906zmet22pmwe9vquzcgvnm93eqygufdlv", pk)
+	require.Equal(t, "kirapub1addwnpepqdszcr95mrqqs8lw099aa9h8h906zmet22pmwe9vquzcgvnm93eqycj5mce", pk)
 
 	path, err := restoredKey.GetPath()
 	require.NoError(t, err)

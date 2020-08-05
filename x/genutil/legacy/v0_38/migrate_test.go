@@ -5,8 +5,8 @@ import (
 
 	v036auth "github.com/KiraCore/cosmos-sdk/x/auth/legacy/v0_36"
 	v036genaccounts "github.com/KiraCore/cosmos-sdk/x/genaccounts/legacy/v0_36"
-	"github.com/KiraCore/cosmos-sdk/x/genutil"
 	v038 "github.com/KiraCore/cosmos-sdk/x/genutil/legacy/v0_38"
+	"github.com/KiraCore/cosmos-sdk/x/genutil/types"
 	v036staking "github.com/KiraCore/cosmos-sdk/x/staking/legacy/v0_36"
 
 	"github.com/stretchr/testify/require"
@@ -15,7 +15,7 @@ import (
 var genAccountsState = []byte(`[
 		{
 			"account_number": "0",
-			"address": "cosmos1q7380u26f7ntke3facjmynajs4umlr329vr4ja",
+			"address": "kira1q7380u26f7ntke3facjmynajs4umlr324rfmns",
 			"coins": [
 				{
 					"amount": "1000000000",
@@ -37,7 +37,7 @@ var genAccountsState = []byte(`[
 		},
 		{
 			"account_number": "0",
-			"address": "cosmos1tygms3xhhs3yv487phx3dw4a95jn7t7lpm470r",
+			"address": "kira1tygms3xhhs3yv487phx3dw4a95jn7t7l35lsww",
 			"coins": [],
 			"delegated_free": [],
 			"delegated_vesting": [],
@@ -53,7 +53,7 @@ var genAccountsState = []byte(`[
 		},
 		{
 			"account_number": "0",
-			"address": "cosmos1m3h30wlvsf8llruxtpukdvsy0km2kum8g38c8q",
+			"address": "kira1m3h30wlvsf8llruxtpukdvsy0km2kum8c7dkxd",
 			"coins": [],
 			"delegated_free": [],
 			"delegated_vesting": [],
@@ -81,16 +81,16 @@ var genAuthState = []byte(`{
 var genStakingState = []byte(`{
   "delegations": [
     {
-      "delegator_address": "cosmos1q7380u26f7ntke3facjmynajs4umlr329vr4ja",
+      "delegator_address": "kira1q7380u26f7ntke3facjmynajs4umlr324rfmns",
       "shares": "100000000.000000000000000000",
-      "validator_address": "cosmosvaloper1q7380u26f7ntke3facjmynajs4umlr32qchq7w"
+      "validator_address": "kiravaloper1q7380u26f7ntke3facjmynajs4umlr32x94ctu"
     }
   ],
   "exported": true,
   "last_total_power": "400",
   "last_validator_powers": [
     {
-      "Address": "cosmosvaloper1q7380u26f7ntke3facjmynajs4umlr32qchq7w",
+      "Address": "kiravaloper1q7380u26f7ntke3facjmynajs4umlr32x94ctu",
       "Power": "100"
     }
   ],
@@ -112,7 +112,7 @@ var genStakingState = []byte(`{
         },
         "update_time": "2019-09-24T23:11:22.9692177Z"
       },
-      "consensus_pubkey": "cosmosvalconspub1zcjduepqygqrt0saxf76lhsmp56rx52j0acdxyjvcdkq3tqvwrsmmm0ke28q36kh9h",
+      "consensus_pubkey": "kiravalconspub1zcjduepqygqrt0saxf76lhsmp56rx52j0acdxyjvcdkq3tqvwrsmmm0ke28q83f02x",
       "delegator_shares": "100000000.000000000000000000",
       "description": {
         "details": "",
@@ -122,7 +122,7 @@ var genStakingState = []byte(`{
       },
       "jailed": false,
       "min_self_delegation": "1",
-      "operator_address": "cosmosvaloper1q7380u26f7ntke3facjmynajs4umlr32qchq7w",
+      "operator_address": "kiravaloper1q7380u26f7ntke3facjmynajs4umlr32x94ctu",
       "status": 2,
       "tokens": "100000000",
       "unbonding_height": "0",
@@ -132,7 +132,7 @@ var genStakingState = []byte(`{
 }`)
 
 func TestMigrate(t *testing.T) {
-	genesis := genutil.AppMap{
+	genesis := types.AppMap{
 		v036auth.ModuleName:        genAuthState,
 		v036genaccounts.ModuleName: genAccountsState,
 		v036staking.ModuleName:     genStakingState,

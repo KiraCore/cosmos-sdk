@@ -7,12 +7,11 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/require"
-
 	"github.com/tendermint/tendermint/crypto/ed25519"
-	tmkv "github.com/tendermint/tendermint/libs/kv"
 
 	"github.com/KiraCore/cosmos-sdk/simapp"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
+	"github.com/KiraCore/cosmos-sdk/types/kv"
 	"github.com/KiraCore/cosmos-sdk/x/gov/simulation"
 	"github.com/KiraCore/cosmos-sdk/x/gov/types"
 )
@@ -29,21 +28,23 @@ func TestDecodeStore(t *testing.T) {
 	endTime := time.Now().UTC()
 
 	content := types.ContentFromProposalType("test", "test", types.ProposalTypeText)
-	proposal := types.NewProposal(content, 1, endTime, endTime.Add(24*time.Hour))
+	proposal, err := types.NewProposal(content, 1, endTime, endTime.Add(24*time.Hour))
+	require.NoError(t, err)
+
 	proposalIDBz := make([]byte, 8)
 	binary.LittleEndian.PutUint64(proposalIDBz, 1)
 	deposit := types.NewDeposit(1, delAddr1, sdk.NewCoins(sdk.NewCoin(sdk.DefaultBondDenom, sdk.OneInt())))
 	vote := types.NewVote(1, delAddr1, types.OptionYes)
 
-	proposalBz, err := cdc.MarshalProposal(proposal)
+	proposalBz, err := cdc.MarshalBinaryBare(&proposal)
 	require.NoError(t, err)
 
-	kvPairs := tmkv.Pairs{
-		tmkv.Pair{Key: types.ProposalKey(1), Value: proposalBz},
-		tmkv.Pair{Key: types.InactiveProposalQueueKey(1, endTime), Value: proposalIDBz},
-		tmkv.Pair{Key: types.DepositKey(1, delAddr1), Value: cdc.MustMarshalBinaryBare(&deposit)},
-		tmkv.Pair{Key: types.VoteKey(1, delAddr1), Value: cdc.MustMarshalBinaryBare(&vote)},
-		tmkv.Pair{Key: []byte{0x99}, Value: []byte{0x99}},
+	kvPairs := kv.Pairs{
+		kv.Pair{Key: types.ProposalKey(1), Value: proposalBz},
+		kv.Pair{Key: types.InactiveProposalQueueKey(1, endTime), Value: proposalIDBz},
+		kv.Pair{Key: types.DepositKey(1, delAddr1), Value: cdc.MustMarshalBinaryBare(&deposit)},
+		kv.Pair{Key: types.VoteKey(1, delAddr1), Value: cdc.MustMarshalBinaryBare(&vote)},
+		kv.Pair{Key: []byte{0x99}, Value: []byte{0x99}},
 	}
 
 	tests := []struct {
