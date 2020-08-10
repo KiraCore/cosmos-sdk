@@ -1328,6 +1328,38 @@ func (this *DelegationDelegatorReward) Equal(that interface{}) bool {
 	}
 	return true
 }
+func (this *DelegationDelegatorReward) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*DelegationDelegatorReward)
+	if !ok {
+		that2, ok := that.(DelegationDelegatorReward)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if !bytes.Equal(this.ValidatorAddress, that1.ValidatorAddress) {
+		return false
+	}
+	if len(this.Reward) != len(that1.Reward) {
+		return false
+	}
+	for i := range this.Reward {
+		if !this.Reward[i].Equal(&that1.Reward[i]) {
+			return false
+		}
+	}
+	return true
+}
 func (m *MsgSetWithdrawAddress) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)

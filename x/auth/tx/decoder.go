@@ -4,7 +4,6 @@ import (
 	"github.com/tendermint/tendermint/crypto"
 
 	"github.com/KiraCore/cosmos-sdk/codec/unknownproto"
-
 	"github.com/KiraCore/cosmos-sdk/codec"
 	cryptotypes "github.com/KiraCore/cosmos-sdk/crypto/types"
 	sdk "github.com/KiraCore/cosmos-sdk/types"

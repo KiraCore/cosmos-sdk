@@ -25,9 +25,17 @@ import (
 	"github.com/KiraCore/cosmos-sdk/server/config"
 	"github.com/KiraCore/cosmos-sdk/server/types"
 	"github.com/KiraCore/cosmos-sdk/simapp"
-	sdk "github.com/KiraCore/cosmos-sdk/types"
+	sdk "github.com/cosmos/cosmos-sdk/server/types"
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/KiraCore/cosmos-sdk/types"
 	"github.com/KiraCore/cosmos-sdk/version"
 )
+
+// DONTCOVER
+
+// ServerContextKey defines the context key used to retrieve a server.Context from
+// a command's Context.
+const ServerContextKey = sdk.ContextKey("server.context")
 
 // DONTCOVER
 
@@ -169,7 +177,7 @@ func interceptConfigs(ctx *Context, rootViper *viper.Viper) (*tmcfg.Config, erro
 }
 
 // add server commands
-func AddCommands(rootCmd *cobra.Command, appCreator types.AppCreator, appExport types.AppExporter) {
+func AddCommands(rootCmd *cobra.Command, defaultNodeHome string, appCreator types.AppCreator, appExport types.AppExporter) {
 	tendermintCmd := &cobra.Command{
 		Use:   "tendermint",
 		Short: "Tendermint subcommands",
@@ -183,11 +191,11 @@ func AddCommands(rootCmd *cobra.Command, appCreator types.AppCreator, appExport 
 	)
 
 	rootCmd.AddCommand(
-		StartCmd(appCreator, simapp.DefaultNodeHome),
+		StartCmd(appCreator, defaultNodeHome),
 		UnsafeResetAllCmd(),
 		flags.LineBreak,
 		tendermintCmd,
-		ExportCmd(appExport, simapp.DefaultNodeHome),
+		ExportCmd(appExport, defaultNodeHome),
 		flags.LineBreak,
 		version.NewVersionCommand(),
 	)

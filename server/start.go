@@ -50,6 +50,12 @@ const (
 	FlagPruningInterval   = "pruning-interval"
 )
 
+// GRPC-related flags.
+const (
+	flagGRPCEnable  = "grpc.enable"
+	flagGRPCAddress = "grpc.address"
+)
+
 // StartCmd runs the service passed in, either stand-alone or in-process with
 // Tendermint.
 func StartCmd(appCreator types.AppCreator, defaultNodeHome string) *cobra.Command {
@@ -122,6 +128,9 @@ which accepts a path for the resulting pprof file.
 	cmd.Flags().Uint64(FlagPruningKeepEvery, 0, "Offset heights to keep on disk after 'keep-every' (ignored if pruning is not 'custom')")
 	cmd.Flags().Uint64(FlagPruningInterval, 0, "Height interval at which pruned heights are removed from disk (ignored if pruning is not 'custom')")
 	cmd.Flags().Uint(FlagInvCheckPeriod, 0, "Assert registered invariants every N blocks")
+
+	cmd.Flags().Bool(flagGRPCEnable, true, "Define if the gRPC server should be enabled")
+	cmd.Flags().String(flagGRPCAddress, config.DefaultGRPCAddress, "the gRPC server address to listen on")
 
 	// add support for all Tendermint-specific command line options
 	tcmd.AddNodeFlags(cmd)
@@ -207,6 +216,47 @@ func startInProcess(ctx *Context, cdc codec.JSONMarshaler, appCreator types.AppC
 
 	if err := tmNode.Start(); err != nil {
 		return err
+	}
+
+	var apiSrv *api.Server
+
+	config := config.GetConfig(ctx.Viper)
+	if config.API.Enable {
+		genDoc, err := genDocProvider()
+		if err != nil {
+			return err
+		}
+
+		clientCtx := client.Context{}.
+			WithHomeDir(home).
+			WithChainID(genDoc.ChainID).
+			WithJSONMarshaler(cdc).
+			WithClient(local.New(tmNode))
+
+		apiSrv = api.New(clientCtx, ctx.Logger.With("module", "api-server"))
+		app.RegisterAPIRoutes(apiSrv)
+
+		errCh := make(chan error)
+
+		go func() {
+			if err := apiSrv.Start(config); err != nil {
+				errCh <- err
+			}
+		}()
+
+		select {
+		case err := <-errCh:
+			return err
+		case <-time.After(5 * time.Second): // assume server started successfully
+		}
+	}
+
+	var grpcSrv *grpc.Server
+	if config.GRPC.Enable {
+		grpcSrv, err = servergrpc.StartGRPCServer(app, config.GRPC.Address)
+		if err != nil {
+			return err
+		}
 	}
 
 	var apiSrv *api.Server

@@ -6,7 +6,6 @@ import (
 	sdk "github.com/KiraCore/cosmos-sdk/types"
 	paramtypes "github.com/KiraCore/cosmos-sdk/x/params/types"
 )
-
 var (
 	// key for constant fee parameter
 	ParamStoreKeyConstantFee = []byte("ConstantFee")

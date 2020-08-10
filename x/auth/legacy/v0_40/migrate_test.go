@@ -5,13 +5,13 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/KiraCore/cosmos-sdk/codec"
-	cryptocodec "github.com/KiraCore/cosmos-sdk/crypto/codec"
-	sdk "github.com/KiraCore/cosmos-sdk/types"
-	"github.com/KiraCore/cosmos-sdk/x/auth/legacy/v0_34"
-	v038auth "github.com/KiraCore/cosmos-sdk/x/auth/legacy/v0_38"
-	v039auth "github.com/KiraCore/cosmos-sdk/x/auth/legacy/v0_39"
-	v040 "github.com/KiraCore/cosmos-sdk/x/auth/legacy/v0_40"
+	"github.com/cosmos/cosmos-sdk/codec"
+	cryptocodec "github.com/cosmos/cosmos-sdk/crypto/codec"
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/cosmos-sdk/x/auth/legacy/v0_34"
+	v038auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v0_38"
+	v039auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v0_39"
+	v040 "github.com/cosmos/cosmos-sdk/x/auth/legacy/v0_40"
 )
 
 func TestMigrate(t *testing.T) {
@@ -20,12 +20,10 @@ func TestMigrate(t *testing.T) {
 	v039auth.RegisterCodec(v039Codec)
 
 	coins := sdk.NewCoins(sdk.NewInt64Coin("stake", 50))
-	addr1, err := sdk.AccAddressFromBech32("kira1xxkueklal9vejv9unqu80w9vptyepfa9yw86s3")
-	require.NoError(t, err)
+	addr1, _ := sdk.AccAddressFromBech32("cosmos1xxkueklal9vejv9unqu80w9vptyepfa95pd53u")
 	acc1 := v039auth.NewBaseAccount(addr1, coins, nil, 1, 0)
 
-	addr2, err := sdk.AccAddressFromBech32("kira15v50ymp6n5dn73erkqtmq0u8adpl8d3uzrqhlc")
-	require.NoError(t, err)
+	addr2, _ := sdk.AccAddressFromBech32("cosmos15v50ymp6n5dn73erkqtmq0u8adpl8d3ujv2e74")
 	vaac := v039auth.NewContinuousVestingAccountRaw(
 		v039auth.NewBaseVestingAccount(v039auth.NewBaseAccount(addr2, coins, nil, 1, 0), coins, nil, nil, 3160620846),
 		1580309972,
@@ -55,7 +53,7 @@ func TestMigrate(t *testing.T) {
     {
       "type": "cosmos-sdk/BaseAccount",
       "value": {
-        "address": "kira1xxkueklal9vejv9unqu80w9vptyepfa9yw86s3",
+        "address": "cosmos1xxkueklal9vejv9unqu80w9vptyepfa95pd53u",
         "public_key": null,
         "account_number": "1",
         "sequence": "0"
@@ -64,7 +62,7 @@ func TestMigrate(t *testing.T) {
     {
       "type": "cosmos-sdk/ContinuousVestingAccount",
       "value": {
-        "address": "kira15v50ymp6n5dn73erkqtmq0u8adpl8d3uzrqhlc",
+        "address": "cosmos15v50ymp6n5dn73erkqtmq0u8adpl8d3ujv2e74",
         "public_key": null,
         "account_number": "1",
         "sequence": "0",

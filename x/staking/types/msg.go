@@ -18,6 +18,15 @@ const (
 	TypeMsgBeginRedelegate = "begin_redelegate"
 )
 
+// staking message types
+const (
+	TypeMsgUndelegate      = "begin_unbonding"
+	TypeMsgEditValidator   = "edit_validator"
+	TypeMsgCreateValidator = "create_validator"
+	TypeMsgDelegate        = "delegate"
+	TypeMsgBeginRedelegate = "begin_redelegate"
+)
+
 var (
 	_ sdk.Msg = &MsgCreateValidator{}
 	_ sdk.Msg = &MsgEditValidator{}

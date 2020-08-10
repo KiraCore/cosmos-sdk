@@ -7,7 +7,6 @@ import (
 	"github.com/KiraCore/cosmos-sdk/store/rootmulti"
 	"github.com/KiraCore/cosmos-sdk/store/types"
 )
-
 func NewCommitMultiStore(db dbm.DB) types.CommitMultiStore {
 	return rootmulti.NewStore(db)
 }

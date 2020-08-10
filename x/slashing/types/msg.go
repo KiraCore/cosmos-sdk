@@ -9,6 +9,11 @@ const (
 	TypeMsgUnjail = "unjail"
 )
 
+// slashing message types
+const (
+	TypeMsgUnjail = "unjail"
+)
+
 // verify interface at compile time
 var _ sdk.Msg = &MsgUnjail{}
 

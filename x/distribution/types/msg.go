@@ -14,6 +14,14 @@ const (
 	TypeMsgFundCommunityPool           = "fund_community_pool"
 )
 
+// distribution message types
+const (
+	TypeMsgSetWithdrawAddress          = "set_withdraw_address"
+	TypeMsgWithdrawDelegatorReward     = "withdraw_delegator_reward"
+	TypeMsgWithdrawValidatorCommission = "withdraw_validator_commission"
+	TypeMsgFundCommunityPool           = "fund_community_pool"
+)
+
 // Verify interface at compile time
 var _, _, _ sdk.Msg = &MsgSetWithdrawAddress{}, &MsgWithdrawDelegatorReward{}, &MsgWithdrawValidatorCommission{}
 

@@ -24,8 +24,8 @@ import (
 var _ clientexported.ClientState = (*ClientState)(nil)
 
 // NewClientState creates a new ClientState instance
-func NewClientState(chainID string, height int64) ClientState {
-	return ClientState{
+func NewClientState(chainID string, height int64) *ClientState {
+	return &ClientState{
 		ChainID: chainID,
 		Height:  uint64(height),
 	}
@@ -51,6 +51,11 @@ func (cs ClientState) IsFrozen() bool {
 	return false
 }
 
+// GetFrozenHeight returns 0.
+func (cs ClientState) GetFrozenHeight() uint64 {
+	return 0
+}
+
 // Validate performs a basic validation of the client state fields.
 func (cs ClientState) Validate() error {
 	if strings.TrimSpace(cs.ChainID) == "" {
@@ -70,7 +75,7 @@ func (cs ClientState) GetProofSpecs() []*ics23.ProofSpec {
 // VerifyClientConsensusState returns an error since a local host client does not store consensus
 // states.
 func (cs ClientState) VerifyClientConsensusState(
-	sdk.KVStore, codec.BinaryMarshaler, *codec.Codec, commitmentexported.Root,
+	sdk.KVStore, codec.BinaryMarshaler, commitmentexported.Root,
 	uint64, string, uint64, commitmentexported.Prefix, []byte, clientexported.ConsensusState,
 ) error {
 	return ErrConsensusStatesNotStored

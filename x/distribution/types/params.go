@@ -8,7 +8,6 @@ import (
 	sdk "github.com/KiraCore/cosmos-sdk/types"
 	paramtypes "github.com/KiraCore/cosmos-sdk/x/params/types"
 )
-
 // Parameter keys
 var (
 	ParamStoreKeyCommunityTax        = []byte("communitytax")

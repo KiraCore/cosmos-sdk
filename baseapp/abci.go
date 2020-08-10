@@ -8,11 +8,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/KiraCore/cosmos-sdk/telemetry"
-
 	abci "github.com/tendermint/tendermint/abci/types"
 
 	"github.com/KiraCore/cosmos-sdk/codec"
+	"github.com/KiraCore/cosmos-sdk/telemetry"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
 	sdkerrors "github.com/KiraCore/cosmos-sdk/types/errors"
 )

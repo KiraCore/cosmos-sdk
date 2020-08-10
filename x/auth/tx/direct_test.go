@@ -4,18 +4,15 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/KiraCore/cosmos-sdk/testutil/testdata"
-
-	"github.com/KiraCore/cosmos-sdk/codec"
-
-	signingtypes "github.com/KiraCore/cosmos-sdk/types/tx/signing"
-
 	"github.com/stretchr/testify/require"
 
+	"github.com/KiraCore/cosmos-sdk/codec"
 	codectypes "github.com/KiraCore/cosmos-sdk/codec/types"
 	"github.com/KiraCore/cosmos-sdk/std"
+	"github.com/KiraCore/cosmos-sdk/testutil/testdata"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
 	txtypes "github.com/KiraCore/cosmos-sdk/types/tx"
+	signingtypes "github.com/KiraCore/cosmos-sdk/types/tx/signing"
 	"github.com/KiraCore/cosmos-sdk/x/auth/signing"
 )
 

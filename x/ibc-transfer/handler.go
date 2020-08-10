@@ -1,10 +1,10 @@
 package transfer
 
 import (
-	sdk "github.com/KiraCore/cosmos-sdk/types"
-	sdkerrors "github.com/KiraCore/cosmos-sdk/types/errors"
-	"github.com/KiraCore/cosmos-sdk/x/ibc-transfer/keeper"
-	"github.com/KiraCore/cosmos-sdk/x/ibc-transfer/types"
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/cosmos/cosmos-sdk/x/ibc-transfer/keeper"
+	"github.com/cosmos/cosmos-sdk/x/ibc-transfer/types"
 )
 
 // NewHandler returns sdk.Handler for IBC token transfer module messages

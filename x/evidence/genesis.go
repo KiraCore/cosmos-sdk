@@ -3,12 +3,13 @@ package evidence
 import (
 	"fmt"
 
+	"github.com/gogo/protobuf/proto"
+
 	codectypes "github.com/KiraCore/cosmos-sdk/codec/types"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
 	"github.com/KiraCore/cosmos-sdk/x/evidence/exported"
 	"github.com/KiraCore/cosmos-sdk/x/evidence/keeper"
 	"github.com/KiraCore/cosmos-sdk/x/evidence/types"
-	"github.com/gogo/protobuf/proto"
 )
 
 // InitGenesis initializes the evidence module's state from a provided genesis

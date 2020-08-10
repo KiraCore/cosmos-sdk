@@ -12,6 +12,7 @@ import (
 	"github.com/KiraCore/cosmos-sdk/simapp/helpers"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
 	"github.com/KiraCore/cosmos-sdk/types/kv"
+	"github.com/cosmos/cosmos-sdk/types/kv"
 	"github.com/KiraCore/cosmos-sdk/types/module"
 	simtypes "github.com/KiraCore/cosmos-sdk/types/simulation"
 )

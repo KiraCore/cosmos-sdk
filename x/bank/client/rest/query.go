@@ -37,16 +37,6 @@ func QueryBalancesRequestHandlerFn(clientCtx client.Context) http.HandlerFunc {
 			route  string
 		)
 
-		// TODO: Remove once client-side Protobuf migration has been completed.
-		// ref: https://github.com/KiraCore/cosmos-sdk/issues/5864
-		var marshaler codec.JSONMarshaler
-
-		if ctx.JSONMarshaler != nil {
-			marshaler = ctx.JSONMarshaler
-		} else {
-			marshaler = ctx.Codec
-		}
-
 		denom := r.FormValue("denom")
 		if denom == "" {
 			params = types.NewQueryAllBalancesRequest(addr, nil)
@@ -56,7 +46,7 @@ func QueryBalancesRequestHandlerFn(clientCtx client.Context) http.HandlerFunc {
 			route = fmt.Sprintf("custom/%s/%s", types.QuerierRoute, types.QueryBalance)
 		}
 
-		bz, err := marshaler.MarshalJSON(params)
+		bz, err := ctx.JSONMarshaler.MarshalJSON(params)
 		if rest.CheckBadRequestError(w, err) {
 			return
 		}
