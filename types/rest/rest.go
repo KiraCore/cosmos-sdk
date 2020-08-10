@@ -18,7 +18,6 @@ import (
 	"github.com/KiraCore/cosmos-sdk/client"
 	"github.com/KiraCore/cosmos-sdk/codec"
 	"github.com/KiraCore/cosmos-sdk/codec/legacy"
-	"github.com/cosmos/cosmos-sdk/codec/legacy"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
 )
 

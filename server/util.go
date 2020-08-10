@@ -23,10 +23,7 @@ import (
 	"github.com/KiraCore/cosmos-sdk/client/flags"
 	"github.com/KiraCore/cosmos-sdk/codec"
 	"github.com/KiraCore/cosmos-sdk/server/config"
-	"github.com/KiraCore/cosmos-sdk/server/types"
-	"github.com/KiraCore/cosmos-sdk/simapp"
-	sdk "github.com/cosmos/cosmos-sdk/server/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/KiraCore/cosmos-sdk/server/types"
 	"github.com/KiraCore/cosmos-sdk/types"
 	"github.com/KiraCore/cosmos-sdk/version"
 )

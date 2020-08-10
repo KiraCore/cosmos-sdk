@@ -17,7 +17,6 @@ import (
 	dbm "github.com/tendermint/tm-db"
 
 	bam "github.com/KiraCore/cosmos-sdk/baseapp"
-	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/KiraCore/cosmos-sdk/client"
 	"github.com/KiraCore/cosmos-sdk/codec"
 	"github.com/KiraCore/cosmos-sdk/simapp/helpers"

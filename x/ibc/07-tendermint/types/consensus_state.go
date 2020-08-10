@@ -10,7 +10,7 @@ import (
 	clientexported "github.com/KiraCore/cosmos-sdk/x/ibc/02-client/exported"
 	clienttypes "github.com/KiraCore/cosmos-sdk/x/ibc/02-client/types"
 	commitmentexported "github.com/KiraCore/cosmos-sdk/x/ibc/23-commitment/exported"
-	commitmenttypes "github.com/cosmos/cosmos-sdk/x/ibc/23-commitment/types"
+	commitmenttypes "github.com/KiraCore/cosmos-sdk/x/ibc/23-commitment/types"
 )
 
 // NewConsensusState creates a new ConsensusState instance.

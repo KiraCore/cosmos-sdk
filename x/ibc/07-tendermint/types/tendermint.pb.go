@@ -6,7 +6,7 @@ package types
 import (
 	fmt "fmt"
 	_go "github.com/confio/ics23/go"
-	types "github.com/cosmos/cosmos-sdk/x/ibc/23-commitment/types"
+	types "github.com/KiraCore/cosmos-sdk/x/ibc/23-commitment/types"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"

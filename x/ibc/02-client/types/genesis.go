@@ -6,7 +6,7 @@ import (
 
 	proto "github.com/gogo/protobuf/proto"
 
-	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
+	codectypes "github.com/KiraCore/cosmos-sdk/codec/types"
 	"github.com/KiraCore/cosmos-sdk/x/ibc/02-client/exported"
 	host "github.com/KiraCore/cosmos-sdk/x/ibc/24-host"
 )
