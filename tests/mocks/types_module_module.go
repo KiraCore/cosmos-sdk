@@ -11,7 +11,7 @@ import (
 	client "github.com/KiraCore/cosmos-sdk/client"
 	codec "github.com/KiraCore/cosmos-sdk/codec"
 	types "github.com/KiraCore/cosmos-sdk/codec/types"
-	types0 "github.com/KiraCore/cosmos-sdk/codec/types"
+	types0 "github.com/KiraCore/cosmos-sdk/types"
 	grpc "github.com/gogo/protobuf/grpc"
 	gomock "github.com/golang/mock/gomock"
 	mux "github.com/gorilla/mux"

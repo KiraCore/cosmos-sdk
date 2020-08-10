@@ -34,15 +34,3 @@ func (msg StdSignMsg) UnpackInterfaces(unpacker types.AnyUnpacker) error {
 
 	return nil
 }
-
-var _ types.UnpackInterfacesMessage = StdSignMsg{}
-
-func (msg StdSignMsg) UnpackInterfaces(unpacker types.AnyUnpacker) error {
-	for _, m := range msg.Msgs {
-		err := types.UnpackInterfaces(m, unpacker)
-		if err != nil {
-			return err
-		}
-	}
-	return nil
-}

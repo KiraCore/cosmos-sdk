@@ -259,47 +259,6 @@ func startInProcess(ctx *Context, cdc codec.JSONMarshaler, appCreator types.AppC
 		}
 	}
 
-	var apiSrv *api.Server
-
-	config := config.GetConfig(ctx.Viper)
-	if config.API.Enable {
-		genDoc, err := genDocProvider()
-		if err != nil {
-			return err
-		}
-
-		clientCtx := client.Context{}.
-			WithHomeDir(home).
-			WithChainID(genDoc.ChainID).
-			WithJSONMarshaler(cdc).
-			WithClient(local.New(tmNode))
-
-		apiSrv = api.New(clientCtx, ctx.Logger.With("module", "api-server"))
-		app.RegisterAPIRoutes(apiSrv)
-
-		errCh := make(chan error)
-
-		go func() {
-			if err := apiSrv.Start(config); err != nil {
-				errCh <- err
-			}
-		}()
-
-		select {
-		case err := <-errCh:
-			return err
-		case <-time.After(5 * time.Second): // assume server started successfully
-		}
-	}
-
-	var grpcSrv *grpc.Server
-	if config.GRPC.Enable {
-		grpcSrv, err = servergrpc.StartGRPCServer(app, config.GRPC.Address)
-		if err != nil {
-			return err
-		}
-	}
-
 	var cpuProfileCleanup func()
 
 	if cpuProfile := ctx.Viper.GetString(flagCPUProfile); cpuProfile != "" {

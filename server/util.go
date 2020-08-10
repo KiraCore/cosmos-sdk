@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/KiraCore/cosmos-sdk/types"
 	"io"
 	"net"
 	"os"
@@ -24,7 +25,6 @@ import (
 	"github.com/KiraCore/cosmos-sdk/codec"
 	"github.com/KiraCore/cosmos-sdk/server/config"
 	sdk "github.com/KiraCore/cosmos-sdk/server/types"
-	"github.com/KiraCore/cosmos-sdk/types"
 	"github.com/KiraCore/cosmos-sdk/version"
 )
 
@@ -32,13 +32,7 @@ import (
 
 // ServerContextKey defines the context key used to retrieve a server.Context from
 // a command's Context.
-const ServerContextKey = sdk.ContextKey("server.context")
-
-// DONTCOVER
-
-// ServerContextKey defines the context key used to retrieve a server.Context from
-// a command's Context.
-const ServerContextKey = sdk.ContextKey("server.context")
+const ServerContextKey = types.ContextKey("server.context")
 
 // server context
 type Context struct {
@@ -174,7 +168,7 @@ func interceptConfigs(ctx *Context, rootViper *viper.Viper) (*tmcfg.Config, erro
 }
 
 // add server commands
-func AddCommands(rootCmd *cobra.Command, defaultNodeHome string, appCreator types.AppCreator, appExport types.AppExporter) {
+func AddCommands(rootCmd *cobra.Command, defaultNodeHome string, appCreator sdk.AppCreator, appExport sdk.AppExporter) {
 	tendermintCmd := &cobra.Command{
 		Use:   "tendermint",
 		Short: "Tendermint subcommands",
@@ -298,7 +292,7 @@ func addrToIP(addr net.Addr) net.IP {
 
 func openDB(rootDir string) (dbm.DB, error) {
 	dataDir := filepath.Join(rootDir, "data")
-	return sdk.NewLevelDB("application", dataDir)
+	return types.NewLevelDB("application", dataDir)
 }
 
 func openTraceWriter(traceWriterFile string) (w io.Writer, err error) {

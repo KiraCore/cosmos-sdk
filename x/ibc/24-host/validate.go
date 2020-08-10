@@ -23,22 +23,6 @@ const DefaultMaxCharacterLength = 64
 // - `[`, `]`, `<`, `>`
 var IsValidID = regexp.MustCompile(`^[a-zA-Z0-9\.\_\+\-\#\[\]\<\>]+$`).MatchString
 
-// DefaultMaxCharacterLength defines the default maximum character length used
-// in validation of identifiers including the client, connection, port and
-// channel identifiers.
-//
-// NOTE: this restriction is specific to this golang implementation of IBC. If
-// your use case demands a higher limit, please open an issue and we will consider
-// adjusting this restriction.
-const DefaultMaxCharacterLength = 64
-
-// IsValidID defines regular expression to check if the string consist of
-// characters in one of the following categories only:
-// - Alphanumeric
-// - `.`, `_`, `+`, `-`, `#`
-// - `[`, `]`, `<`, `>`
-var IsValidID = regexp.MustCompile(`^[a-zA-Z0-9\.\_\+\-\#\[\]\<\>]+$`).MatchString
-
 // ICS 024 Identifier and Path Validation Implementation
 //
 // This file defines ValidateFn to validate identifier and path strings
