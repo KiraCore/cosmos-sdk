@@ -24,15 +24,15 @@ in for Tendermint and other lower-level libraries (eg. [IAVL](https://github.com
 
 ### Modules
 
-- [`x/auth`](https://github.com/KiraCore/cosmos-sdk/tree/master/x/auth)
-- [`x/bank`](https://github.com/KiraCore/cosmos-sdk/tree/master/x/bank)
+- [`x/auth`](https://github.com/cosmos/cosmos-sdk/tree/master/x/auth)
+- [`x/bank`](https://github.com/cosmos/cosmos-sdk/tree/master/x/bank)
 - [`x/capability`](https://github.com/cosmos/cosmos-sdk/tree/master/x/capability)
-- [`x/staking`](https://github.com/KiraCore/cosmos-sdk/tree/master/x/staking)
-- [`x/slashing`](https://github.com/KiraCore/cosmos-sdk/tree/master/x/slashing)
-- [`x/evidence`](https://github.com/KiraCore/cosmos-sdk/tree/master/x/evidence)
-- [`x/distribution`](https://github.com/KiraCore/cosmos-sdk/tree/master/x/distribution)
-- [`x/ibc`](https://github.com/KiraCore/cosmos-sdk/tree/master/x/ibc)
-- [`x/ibc-transfer`](https://github.com/KiraCore/cosmos-sdk/tree/master/x/ibc-transfer)
+- [`x/staking`](https://github.com/cosmos/cosmos-sdk/tree/master/x/staking)
+- [`x/slashing`](https://github.com/cosmos/cosmos-sdk/tree/master/x/slashing)
+- [`x/evidence`](https://github.com/cosmos/cosmos-sdk/tree/master/x/evidence)
+- [`x/distribution`](https://github.com/cosmos/cosmos-sdk/tree/master/x/distribution)
+- [`x/ibc`](https://github.com/cosmos/cosmos-sdk/tree/master/x/ibc)
+- [`x/ibc-transfer`](https://github.com/cosmos/cosmos-sdk/tree/master/x/ibc-transfer)
 - [`x/mint`](https://github.com/cosmos/cosmos-sdk/tree/master/x/mint)
 
 We are interested in bugs in other modules, however the above are most likely to

@@ -14,7 +14,7 @@ import (
 
 	"github.com/KiraCore/cosmos-sdk/client"
 	"github.com/KiraCore/cosmos-sdk/codec"
-	cdctypes "github.com/KiraCore/cosmos-sdk/codec/types"
+	codectypes "github.com/KiraCore/cosmos-sdk/codec/types"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
 	sdkerrors "github.com/KiraCore/cosmos-sdk/types/errors"
 	"github.com/KiraCore/cosmos-sdk/types/module"
@@ -79,7 +79,7 @@ func (AppModuleBasic) GetQueryCmd() *cobra.Command {
 }
 
 // RegisterInterfaces registers module concrete types into protobuf Any.
-func (AppModuleBasic) RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
+func (AppModuleBasic) RegisterInterfaces(registry codectypes.InterfaceRegistry) {
 	types.RegisterInterfaces(registry)
 }
 
