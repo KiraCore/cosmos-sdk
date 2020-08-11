@@ -13,7 +13,7 @@ import (
 	ibctmtypes "github.com/KiraCore/cosmos-sdk/x/ibc/07-tendermint/types"
 	localhosttypes "github.com/KiraCore/cosmos-sdk/x/ibc/09-localhost/types"
 	commitmenttypes "github.com/KiraCore/cosmos-sdk/x/ibc/23-commitment/types"
-	ibctesting "github.com/cosmos/cosmos-sdk/x/ibc/testing"
+	ibctesting "github.com/KiraCore/cosmos-sdk/x/ibc/testing"
 )
 
 const (
@@ -70,32 +70,6 @@ func TestValidateGenesis(t *testing.T) {
 			),
 			expPass: true,
 		},
-		{
-			name: "invalid clientid",
-			genState: types.NewGenesisState(
-				[]types.GenesisClientState{
-					types.NewGenesisClientState(
-						"/~@$*", ibctmtypes.NewClientState(lite.DefaultTrustLevel, trustingPeriod, ubdPeriod, maxClockDrift, header, commitmenttypes.GetSDKSpecs()),
-					),
-					types.NewGenesisClientState(
-						exported.ClientTypeLocalHost, localhosttypes.NewClientState("chainID", 10),
-					),
-				},
-				[]types.ClientConsensusStates{
-					{
-						clientID,
-						[]exported.ConsensusState{
-							ibctmtypes.NewConsensusState(
-								header.Time, commitmenttypes.NewMerkleRoot(header.AppHash), header.GetHeight(), header.ValidatorSet,
-							),
-						},
-					},
-				},
-				true,
-			),
-			expPass: false,
-		},
-
 		{
 			name: "invalid clientid",
 			genState: types.NewGenesisState(

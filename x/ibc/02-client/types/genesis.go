@@ -11,18 +11,6 @@ import (
 	host "github.com/KiraCore/cosmos-sdk/x/ibc/24-host"
 )
 
-type GenesisClientState struct {
-	ClientID    string               `json:"client_id" yaml:"client_id"`
-	ClientState exported.ClientState `json:"client_state" yaml:"client_state"`
-}
-
-func NewGenesisClientState(id string, cs exported.ClientState) GenesisClientState {
-	return GenesisClientState{
-		ClientID:    id,
-		ClientState: cs,
-	}
-}
-
 var (
 	_ codectypes.UnpackInterfacesMessage = GenesisClientState{}
 	_ codectypes.UnpackInterfacesMessage = ClientsConsensusStates{}

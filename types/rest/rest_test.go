@@ -19,8 +19,7 @@ import (
 	"github.com/KiraCore/cosmos-sdk/client/flags"
 	"github.com/KiraCore/cosmos-sdk/codec"
 	cryptocodec "github.com/KiraCore/cosmos-sdk/crypto/codec"
-	cryptocodec "github.com/cosmos/cosmos-sdk/crypto/codec"
-	simappparams "github.com/cosmos/cosmos-sdk/simapp/params"
+	simappparams "github.com/KiraCore/cosmos-sdk/simapp/params"
 	"github.com/KiraCore/cosmos-sdk/types"
 	"github.com/KiraCore/cosmos-sdk/types/rest"
 )

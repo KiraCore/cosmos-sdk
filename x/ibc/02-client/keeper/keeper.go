@@ -7,6 +7,7 @@ import (
 	"github.com/tendermint/tendermint/libs/log"
 
 	"github.com/KiraCore/cosmos-sdk/codec"
+	codectypes "github.com/KiraCore/cosmos-sdk/codec/types"
 	"github.com/KiraCore/cosmos-sdk/store/prefix"
 	sdk "github.com/KiraCore/cosmos-sdk/types"
 	"github.com/KiraCore/cosmos-sdk/x/ibc/02-client/exported"
@@ -14,7 +15,6 @@ import (
 	ibctmtypes "github.com/KiraCore/cosmos-sdk/x/ibc/07-tendermint/types"
 	commitmenttypes "github.com/KiraCore/cosmos-sdk/x/ibc/23-commitment/types"
 	host "github.com/KiraCore/cosmos-sdk/x/ibc/24-host"
-	stakingtypes "github.com/KiraCore/cosmos-sdk/x/staking/types"
 )
 
 // Keeper represents a type that grants read and write permissions to any client

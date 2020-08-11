@@ -27,7 +27,7 @@ var _ clientexported.ClientState = (*ClientState)(nil)
 func InitializeFromMsg(msg *MsgCreateClient) *ClientState {
 	return NewClientState(msg.Header.ChainID, msg.TrustLevel,
 		msg.TrustingPeriod, msg.UnbondingPeriod, msg.MaxClockDrift,
-		uint64(msg.Header.Height), msg.ProofSpecs, msg.ProofSpecs,
+		uint64(msg.Header.Height), msg.ProofSpecs,
 	)
 }
 
@@ -112,12 +112,6 @@ func (cs ClientState) Validate() error {
 	}
 
 	return nil
-}
-
-// GetProofSpecs returns the format the client expects for proof verification
-// as a string array specifying the proof type for each position in chained proof
-func (cs ClientState) GetProofSpecs() []*ics23.ProofSpec {
-	return cs.ProofSpecs
 }
 
 // GetProofSpecs returns the format the client expects for proof verification

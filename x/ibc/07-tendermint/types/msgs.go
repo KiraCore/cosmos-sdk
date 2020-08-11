@@ -32,10 +32,10 @@ var (
 type MsgCreateClient struct {
 	ClientID        string             `json:"client_id" yaml:"client_id"`
 	Header          Header             `json:"header" yaml:"header"`
-	TrustLevel      Fraction    `json:"trust_level" yaml:"trust_level"`
+	TrustLevel      Fraction           `json:"trust_level" yaml:"trust_level"`
 	TrustingPeriod  time.Duration      `json:"trusting_period" yaml:"trusting_period"`
 	UnbondingPeriod time.Duration      `json:"unbonding_period" yaml:"unbonding_period"`
-	MaxClockDrift   time.Duration      `json:"max_clock_drift" yaml:"max_clock_drift"`ProofSpecs      []*ics23.ProofSpec `json:"proof_specs" yaml:"proof_specs"`
+	MaxClockDrift   time.Duration      `json:"max_clock_drift" yaml:"max_clock_drift"`
 	ProofSpecs      []*ics23.ProofSpec `json:"proof_specs" yaml:"proof_specs"`
 	Signer          sdk.AccAddress     `json:"address" yaml:"address"`
 }

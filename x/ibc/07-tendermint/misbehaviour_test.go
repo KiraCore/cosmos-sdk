@@ -11,7 +11,7 @@ import (
 	"github.com/KiraCore/cosmos-sdk/simapp"
 	clientexported "github.com/KiraCore/cosmos-sdk/x/ibc/02-client/exported"
 	tendermint "github.com/KiraCore/cosmos-sdk/x/ibc/07-tendermint"
-	ibctmtypes "github.com/KiraCore/cosmos-sdk/x/ibc/07-tendermint/types"
+	"github.com/KiraCore/cosmos-sdk/x/ibc/07-tendermint/types"
 	commitmenttypes "github.com/KiraCore/cosmos-sdk/x/ibc/23-commitment/types"
 )
 
@@ -94,7 +94,6 @@ func (suite *TendermintTestSuite) TestCheckMisbehaviour() {
 			},
 			simapp.DefaultConsensusParams,
 			height,
-			suite.now,
 			suite.now,
 			true,
 		},

@@ -11,7 +11,6 @@ import (
 	"github.com/tendermint/tendermint/libs/cli"
 
 	"github.com/KiraCore/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/crypto/hd"
 	"github.com/KiraCore/cosmos-sdk/crypto/hd"
 	"github.com/KiraCore/cosmos-sdk/crypto/keyring"
 	"github.com/KiraCore/cosmos-sdk/testutil"
