@@ -5,9 +5,10 @@ import (
 	"fmt"
 	"sort"
 
+	proto "github.com/gogo/protobuf/proto"
+
 	"github.com/KiraCore/cosmos-sdk/codec"
 	"github.com/KiraCore/cosmos-sdk/codec/types"
-	proto "github.com/gogo/protobuf/proto"
 )
 
 var _ types.UnpackInterfacesMessage = GenesisState{}

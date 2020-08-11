@@ -3,10 +3,11 @@ package types
 import (
 	"fmt"
 
+	proto "github.com/gogo/protobuf/proto"
+
 	"github.com/KiraCore/cosmos-sdk/codec"
 	codectypes "github.com/KiraCore/cosmos-sdk/codec/types"
 	"github.com/KiraCore/cosmos-sdk/x/ibc/02-client/exported"
-	proto "github.com/gogo/protobuf/proto"
 )
 
 // RegisterCodec registers the IBC client interfaces and types
