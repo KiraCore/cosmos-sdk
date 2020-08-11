@@ -1,7 +1,7 @@
 syntax = "proto3";
 package ibc.types;
 
-option go_package = "github.com/cosmos/cosmos-sdk/x/ibc/types";
+option go_package = "github.com/KiraCore/cosmos-sdk/x/ibc/types";
 
 import "gogoproto/gogo.proto";
 import "ibc/client/genesis.proto";
